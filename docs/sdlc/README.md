@@ -5,7 +5,7 @@
 <!-- sdlc:auto:start overview -->
 small shop
 
-**Documentation version:** v1
+**Documentation version:** v2
 <!-- sdlc:auto:end overview -->
 
 ## Contents
@@ -14,14 +14,14 @@ small shop
 | Document | State |
 |---|---|
 | [Requirements](requirements/README.md) | v1 approved |
-| [Architecture](architecture/README.md) | 1 entry |
+| [Architecture](architecture/README.md) | 16 entries |
 | [Development](development/README.md) | 1 entry |
 | [Testing](testing/README.md) | 1 entry |
 | [Deployment](deployment/README.md) | 1 entry |
 | [Maintenance](maintenance/README.md) | 1 entry |
-| [Data model](architecture/data-model.md) | not generated yet |
-| [API (OpenAPI)](architecture/api/openapi.yaml) | not generated yet |
-| [Decisions (ADRs)](architecture/adr/README.md) | 0 decisions |
+| [Data model](architecture/data-model.md) | generated |
+| [API (OpenAPI)](architecture/api/openapi.yaml) | generated |
+| [Decisions (ADRs)](architecture/adr/README.md) | 4 decisions |
 | [Sprint plan](development/sprint-plan.md) | not generated yet |
 | [Developer guide](development/developer-guide.md) | not generated yet |
 | [API reference](development/api-reference.md) | 0 routes |
@@ -31,7 +31,7 @@ small shop
 | [Runbook](deployment/runbook.md) | not deployed yet |
 | [Release notes](deployment/release-notes.md) | 0 releases |
 | [Traceability matrix](traceability-matrix.md) | 20 requirements |
-| [Changelog](CHANGELOG.md) | 1 version |
+| [Changelog](CHANGELOG.md) | 2 versions |
 <!-- sdlc:auto:end contents -->
 
 ## Open gaps
@@ -51,7 +51,11 @@ small shop
 
 ### Architecture
 
-- Architecture phase has not started: no design artifacts, screen list, data models, or technical decisions provided.
+- Input does not map architecture components/endpoints explicitly to the US-001..US-020 requirement IDs, so full requirement traceability for this phase cannot be confirmed without additional input.
+- No explicit requirement ID links given in input for this critical path; mapping to shopper-facing user stories (e.g. checkout/cart stories) is inferred, not confirmed.
+- No explicit requirement ID links given in input for this critical path.
+- NFR-001 and NFR-002 are referenced as the rationale but are not present in the known requirement key list (US-001..US-020) supplied for this phase -- confirm whether these NFRs are tracked elsewhere.
+- NFR-006 is referenced as rationale but is not present in the known requirement key list (US-001..US-020) supplied for this phase -- confirm whether it is tracked elsewhere.
 
 ### Development
 

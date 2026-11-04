@@ -7,7 +7,33 @@ _No routes found._
 <!-- sdlc:auto:end endpoints -->
 
 <!-- sdlc:auto:start drift -->
-_Code matches the designed API._
+**Designed but missing:**
+
+- DELETE /account
+- DELETE /admin/products/:id
+- DELETE /carts/:id/items/:itemId
+- GET /account/orders
+- GET /admin/orders
+- GET /admin/orders/:id
+- GET /carts/:id
+- GET /orders/:reference
+- GET /products
+- GET /products/:id
+- GET /settings/tax
+- GET /shipping-options
+- PATCH /admin/orders/:id/ship
+- PATCH /admin/products/:id
+- PATCH /admin/shipping-options/:id
+- PATCH /carts/:id/items/:itemId
+- POST /admin/products
+- POST /admin/shipping-options
+- POST /auth/login
+- POST /auth/register
+- POST /carts
+- POST /carts/:id/items
+- POST /checkout/session
+- POST /webhooks/stripe
+- PUT /admin/settings/tax
 <!-- sdlc:auto:end drift -->
 
 <!-- sdlc:auto:start source -->

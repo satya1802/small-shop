@@ -2,6 +2,541 @@
 openapi: 3.1.0
 info:
   title: small shop
-  version: architecture-v0
+  version: architecture-v1
   description: Designed API from the approved architecture (not extracted from code).
-paths: {}
+paths:
+  /account:
+    delete:
+      summary: Delete account and personal data (retain order records as legally required)
+      description: Delete account and personal data (retain order records as legally
+        required)
+      operationId: delete_account
+      parameters: []
+      responses:
+        '200':
+          description: '204'
+      security:
+      - bearerAuth: []
+  /account/orders:
+    get:
+      summary: List the signed-in shopper's past orders
+      description: List the signed-in shopper's past orders
+      operationId: get_account_orders
+      parameters: []
+      responses:
+        '200':
+          description: Order[]
+      security:
+      - bearerAuth: []
+  /admin/orders:
+    get:
+      summary: 'Owner dashboard: recent orders and those awaiting shipment'
+      description: 'Owner dashboard: recent orders and those awaiting shipment'
+      operationId: get_admin_orders
+      parameters: []
+      responses:
+        '200':
+          description: Order[]
+      security:
+      - bearerAuth: []
+  /admin/orders/:id:
+    get:
+      summary: Owner views full order details
+      description: Owner views full order details
+      operationId: get_admin_orders_id
+      parameters: []
+      responses:
+        '200':
+          description: Order
+      security:
+      - bearerAuth: []
+  /admin/orders/:id/ship:
+    patch:
+      summary: Owner marks an order shipped
+      description: Owner marks an order shipped
+      operationId: patch_admin_orders_id_ship
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{}'
+      responses:
+        '200':
+          description: Order
+      security:
+      - bearerAuth: []
+  /admin/products:
+    post:
+      summary: Owner creates a product
+      description: Owner creates a product
+      operationId: post_admin_products
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{name, description, price, imageUrl, stock, published}'
+      responses:
+        '200':
+          description: Product
+      security:
+      - bearerAuth: []
+  /admin/products/:id:
+    patch:
+      summary: Owner edits product, stock or publish state
+      description: Owner edits product, stock or publish state
+      operationId: patch_admin_products_id
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Partial<Product>
+      responses:
+        '200':
+          description: Product
+      security:
+      - bearerAuth: []
+    delete:
+      summary: Owner removes/unpublishes a product
+      description: Owner removes/unpublishes a product
+      operationId: delete_admin_products_id
+      parameters: []
+      responses:
+        '200':
+          description: '204'
+      security:
+      - bearerAuth: []
+  /admin/settings/tax:
+    put:
+      summary: Owner sets the single tax/VAT rate and currency
+      description: Owner sets the single tax/VAT rate and currency
+      operationId: put_admin_settings_tax
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{taxRatePercent, currency}'
+      responses:
+        '200':
+          description: '{taxRatePercent, currency}'
+      security:
+      - bearerAuth: []
+  /admin/shipping-options:
+    post:
+      summary: Owner creates a flat-rate shipping option
+      description: Owner creates a flat-rate shipping option
+      operationId: post_admin_shipping_options
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{name, cost}'
+      responses:
+        '200':
+          description: ShippingOption
+      security:
+      - bearerAuth: []
+  /admin/shipping-options/:id:
+    patch:
+      summary: Owner edits or deactivates a shipping option
+      description: Owner edits or deactivates a shipping option
+      operationId: patch_admin_shipping_options_id
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Partial<ShippingOption>
+      responses:
+        '200':
+          description: ShippingOption
+      security:
+      - bearerAuth: []
+  /auth/login:
+    post:
+      summary: Sign in and receive JWT
+      description: Sign in and receive JWT
+      operationId: post_auth_login
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{email, password}'
+      responses:
+        '200':
+          description: '{token}'
+  /auth/register:
+    post:
+      summary: Create a lightweight email account
+      description: Create a lightweight email account
+      operationId: post_auth_register
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{email, password}'
+      responses:
+        '200':
+          description: '{token}'
+  /carts:
+    post:
+      summary: Create a cart (guest or signed-in)
+      description: Create a cart (guest or signed-in)
+      operationId: post_carts
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{}'
+      responses:
+        '200':
+          description: Cart
+      security:
+      - bearerAuth: []
+  /carts/:id:
+    get:
+      summary: Get cart with recalculated subtotal
+      description: Get cart with recalculated subtotal
+      operationId: get_carts_id
+      parameters: []
+      responses:
+        '200':
+          description: Cart
+      security:
+      - bearerAuth: []
+  /carts/:id/items:
+    post:
+      summary: Add item to cart, quantity capped at stock
+      description: Add item to cart, quantity capped at stock
+      operationId: post_carts_id_items
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{productId, quantity}'
+      responses:
+        '200':
+          description: Cart
+      security:
+      - bearerAuth: []
+  /carts/:id/items/:itemId:
+    patch:
+      summary: Update quantity (capped) or remove item
+      description: Update quantity (capped) or remove item
+      operationId: patch_carts_id_items_itemid
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{quantity}'
+      responses:
+        '200':
+          description: Cart
+      security:
+      - bearerAuth: []
+    delete:
+      summary: Remove a cart line
+      description: Remove a cart line
+      operationId: delete_carts_id_items_itemid
+      parameters: []
+      responses:
+        '200':
+          description: Cart
+      security:
+      - bearerAuth: []
+  /checkout/session:
+    post:
+      summary: Validate cart, compute tax+shipping, create Stripe Checkout session
+      description: Validate cart, compute tax+shipping, create Stripe Checkout session
+      operationId: post_checkout_session
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: '{cartId, shippingOptionId, contactEmail, shippingAddress}'
+      responses:
+        '200':
+          description: '{checkoutUrl}'
+      security:
+      - bearerAuth: []
+  /orders/:reference:
+    get:
+      summary: Fetch order for on-screen confirmation
+      description: Fetch order for on-screen confirmation
+      operationId: get_orders_reference
+      parameters: []
+      responses:
+        '200':
+          description: Order
+      security:
+      - bearerAuth: []
+  /products:
+    get:
+      summary: List published products with image, name, price and stock flag
+      description: List published products with image, name, price and stock flag
+      operationId: get_products
+      parameters: []
+      responses:
+        '200':
+          description: Product[]
+  /products/:id:
+    get:
+      summary: Product detail page data
+      description: Product detail page data
+      operationId: get_products_id
+      parameters: []
+      responses:
+        '200':
+          description: Product
+  /settings/tax:
+    get:
+      summary: Get single configured tax rate and currency
+      description: Get single configured tax rate and currency
+      operationId: get_settings_tax
+      parameters: []
+      responses:
+        '200':
+          description: '{taxRatePercent, currency}'
+  /shipping-options:
+    get:
+      summary: List active flat-rate shipping options for checkout
+      description: List active flat-rate shipping options for checkout
+      operationId: get_shipping_options
+      parameters: []
+      responses:
+        '200':
+          description: ShippingOption[]
+  /webhooks/stripe:
+    post:
+      summary: 'Stripe webhook: on payment success create order and decrement stock
+        atomically'
+      description: 'Stripe webhook: on payment success create order and decrement
+        stock atomically'
+      operationId: post_webhooks_stripe
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Stripe event
+      responses:
+        '200':
+          description: '200'
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    products:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        price_cents:
+          type: integer
+        image_url:
+          type: string
+        stock_quantity:
+          type: integer
+        published:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - name
+      - price_cents
+      - stock_quantity
+      - published
+      - created_at
+    customers:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        password_hash:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - email
+      - password_hash
+      - created_at
+    carts:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        customer_id:
+          type: string
+          format: uuid
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - status
+      - created_at
+    cart_items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        cart_id:
+          type: string
+          format: uuid
+        product_id:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+      required:
+      - id
+      - cart_id
+      - product_id
+      - quantity
+    shipping_options:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        cost_cents:
+          type: integer
+        active:
+          type: boolean
+      required:
+      - id
+      - name
+      - cost_cents
+      - active
+    store_settings:
+      type: object
+      properties:
+        id:
+          type: integer
+        tax_rate_percent:
+          type: number
+        currency:
+          type: string
+      required:
+      - id
+      - tax_rate_percent
+      - currency
+    orders:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        order_reference:
+          type: string
+        customer_id:
+          type: string
+          format: uuid
+        contact_email:
+          type: string
+        shipping_name:
+          type: string
+        shipping_address:
+          type: string
+        shipping_option_id:
+          type: string
+          format: uuid
+        subtotal_cents:
+          type: integer
+        shipping_cents:
+          type: integer
+        tax_cents:
+          type: integer
+        total_cents:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
+        stripe_payment_intent:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - order_reference
+      - contact_email
+      - shipping_name
+      - shipping_address
+      - subtotal_cents
+      - shipping_cents
+      - tax_cents
+      - total_cents
+      - currency
+      - status
+      - created_at
+    order_items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        order_id:
+          type: string
+          format: uuid
+        product_id:
+          type: string
+          format: uuid
+        product_name:
+          type: string
+        unit_price_cents:
+          type: integer
+        quantity:
+          type: integer
+      required:
+      - id
+      - order_id
+      - product_name
+      - unit_price_cents
+      - quantity
