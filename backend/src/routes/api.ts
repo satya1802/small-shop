@@ -7,13 +7,20 @@
  * API spec; the behaviour does not exist yet.
  */
 import { Router } from "express";
+import { z } from "zod";
 
 import { getPublishedProduct, listPublishedProducts } from "../services/products.js";
 import { listActiveShippingOptions } from "../services/shipping.js";
 import { getTaxSettings } from "../services/settings.js";
+import { loginCustomer, registerCustomer } from "../services/auth.js";
 import { notImplemented } from "../stubs.js";
 
 export const router = Router();
+
+const credentialsSchema = z.object({
+  email: z.string().trim().email("A valid email is required."),
+  password: z.string().min(8, "Password must be at least 8 characters."),
+});
 
 /** List published products with image, name, price and stock flag */
 router.get("/products", async (_req, res) => {
@@ -83,13 +90,33 @@ router.get("/orders/:reference", (_req, res) => {
 });
 
 /** Create a lightweight email account */
-router.post("/auth/register", (_req, res) => {
-  res.json(notImplemented("POST /auth/register"));
+router.post("/auth/register", async (req, res) => {
+  const parsed = credentialsSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
+    return;
+  }
+  const result = await registerCustomer(parsed.data.email, parsed.data.password);
+  if ("error" in result) {
+    res.status(409).json({ error: result.error, detail: "That email is already registered." });
+    return;
+  }
+  res.status(201).json(result);
 });
 
 /** Sign in and receive JWT */
-router.post("/auth/login", (_req, res) => {
-  res.json(notImplemented("POST /auth/login"));
+router.post("/auth/login", async (req, res) => {
+  const parsed = credentialsSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
+    return;
+  }
+  const result = await loginCustomer(parsed.data.email, parsed.data.password);
+  if ("error" in result) {
+    res.status(401).json({ error: result.error, detail: "Incorrect email or password." });
+    return;
+  }
+  res.json(result);
 });
 
 /** List the signed-in shopper's past orders */

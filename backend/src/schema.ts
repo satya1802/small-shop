@@ -44,10 +44,16 @@ export const products = pgTable("products", {
 
 /** Optional shopper accounts (email + password), used to view past orders. */
 export const customers = pgTable("customers", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  // Same reasoning as products.id above: `createStatements()` emits no SQL-level
+  // DEFAULT, so `.defaultRandom()`/`.defaultNow()` would insert NULL.
+  id: uuid("id")
+    .primaryKey()
+    .$defaultFn(() => randomUUID()),
   email: text("email").notNull(),
   passwordHash: text("password_hash").notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }).notNull().defaultNow(),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    .notNull()
+    .$defaultFn(() => new Date().toISOString()),
 });
 
 /** A guest or signed-in shopper's in-progress or completed cart. */

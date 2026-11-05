@@ -11,21 +11,22 @@ import { z } from "zod";
 
 import { requireOwner } from "../middleware/auth.js";
 import { createProduct, deleteProduct, updateProduct } from "../services/products.js";
-import {
-  createShippingOption,
-  updateShippingOption,
-} from "../services/shipping.js";
+import { createShippingOption, updateShippingOption } from "../services/shipping.js";
 import { setTaxSettings } from "../services/settings.js";
 import { notImplemented } from "../stubs.js";
 
 export const router = Router();
 
+// Request body field names follow the approved API spec for this endpoint
+// (`{name, description, price, imageUrl, stock, published}`), which differ from the
+// `products` schema's own column names (price_cents, image_url, stock_quantity) used in
+// the response body; the mapping happens below.
 const createProductSchema = z.object({
   name: z.string().trim().min(1, "Name is required."),
   description: z.string().nullable().optional(),
-  price_cents: z.number().int().nonnegative(),
-  image_url: z.string().nullable().optional(),
-  stock_quantity: z.number().int().nonnegative(),
+  price: z.number().int().nonnegative(),
+  imageUrl: z.string().nullable().optional(),
+  stock: z.number().int().nonnegative(),
   published: z.boolean().optional(),
 });
 
@@ -38,7 +39,14 @@ router.post("/admin/products", requireOwner, async (req, res) => {
     res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
     return;
   }
-  const product = await createProduct(parsed.data);
+  const product = await createProduct({
+    name: parsed.data.name,
+    description: parsed.data.description,
+    price_cents: parsed.data.price,
+    image_url: parsed.data.imageUrl,
+    stock_quantity: parsed.data.stock,
+    published: parsed.data.published,
+  });
   res.status(201).json(product);
 });
 
@@ -49,7 +57,13 @@ router.patch("/admin/products/:id", requireOwner, async (req, res) => {
     res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
     return;
   }
-  const product = await updateProduct(String(req.params.id), parsed.data);
+  const { price, imageUrl, stock, ...rest } = parsed.data;
+  const product = await updateProduct(String(req.params.id), {
+    ...rest,
+    ...(price !== undefined ? { price_cents: price } : {}),
+    ...(imageUrl !== undefined ? { image_url: imageUrl } : {}),
+    ...(stock !== undefined ? { stock_quantity: stock } : {}),
+  });
   if (!product) {
     res.status(404).json({ error: "not_found", detail: "No product with that id." });
     return;
@@ -118,16 +132,16 @@ router.put("/admin/settings/tax", requireOwner, async (req, res) => {
 });
 
 /** Owner dashboard: recent orders and those awaiting shipment */
-router.get("/admin/orders", (_req, res) => {
+router.get("/admin/orders", requireOwner, (_req, res) => {
   res.json(notImplemented("GET /admin/orders"));
 });
 
 /** Owner views full order details */
-router.get("/admin/orders/:id", (_req, res) => {
+router.get("/admin/orders/:id", requireOwner, (_req, res) => {
   res.json(notImplemented("GET /admin/orders/:id"));
 });
 
 /** Owner marks an order shipped */
-router.patch("/admin/orders/:id/ship", (_req, res) => {
+router.patch("/admin/orders/:id/ship", requireOwner, (_req, res) => {
   res.json(notImplemented("PATCH /admin/orders/:id/ship"));
 });
