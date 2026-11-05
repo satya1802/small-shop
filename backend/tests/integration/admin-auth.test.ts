@@ -15,20 +15,20 @@ const adminRoutes: {
   path: string;
   body?: object;
 }[] = [
-    { method: "post", path: "/admin/products", body: { name: "x", price: 1, stock: 1 } },
-    { method: "patch", path: `/admin/products/${ZERO_UUID}`, body: {} },
-    { method: "delete", path: `/admin/products/${ZERO_UUID}` },
-    { method: "post", path: "/admin/shipping-options", body: { name: "x", cost: 1 } },
-    { method: "patch", path: `/admin/shipping-options/${ZERO_UUID}`, body: {} },
-    {
-      method: "put",
-      path: "/admin/settings/tax",
-      body: { taxRatePercent: 1, currency: "USD" },
-    },
-    { method: "get", path: "/admin/orders" },
-    { method: "get", path: `/admin/orders/${ZERO_UUID}` },
-    { method: "patch", path: `/admin/orders/${ZERO_UUID}/ship`, body: {} },
-  ];
+  { method: "post", path: "/admin/products", body: { name: "x", price: 1, stock: 1 } },
+  { method: "patch", path: `/admin/products/${ZERO_UUID}`, body: {} },
+  { method: "delete", path: `/admin/products/${ZERO_UUID}` },
+  { method: "post", path: "/admin/shipping-options", body: { name: "x", cost: 1 } },
+  { method: "patch", path: `/admin/shipping-options/${ZERO_UUID}`, body: {} },
+  {
+    method: "put",
+    path: "/admin/settings/tax",
+    body: { taxRatePercent: 1, currency: "USD" },
+  },
+  { method: "get", path: "/admin/orders" },
+  { method: "get", path: `/admin/orders/${ZERO_UUID}` },
+  { method: "patch", path: `/admin/orders/${ZERO_UUID}/ship`, body: {} },
+];
 
 describe("every /admin/* route requires owner sign-in (NFR-005)", () => {
   for (const route of adminRoutes) {

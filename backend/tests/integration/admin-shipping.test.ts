@@ -31,7 +31,10 @@ describe("admin shipping options (AC-029, AC-030)", () => {
 
   it("[AC-030] editing a shipping option updates GET /shipping-options", async () => {
     const name = uniqueName("Express Delivery");
-    const create = await request(app).post("/admin/shipping-options").set(owner).send({ name, cost: 1000 });
+    const create = await request(app)
+      .post("/admin/shipping-options")
+      .set(owner)
+      .send({ name, cost: 1000 });
     const id = field<string>(create.body, "id");
 
     const updatedName = `${name} (updated)`;
@@ -49,7 +52,10 @@ describe("admin shipping options (AC-029, AC-030)", () => {
 
   it("[AC-030] removing/deactivating a shipping option removes it from GET /shipping-options", async () => {
     const name = uniqueName("Removable Delivery");
-    const create = await request(app).post("/admin/shipping-options").set(owner).send({ name, cost: 300 });
+    const create = await request(app)
+      .post("/admin/shipping-options")
+      .set(owner)
+      .send({ name, cost: 300 });
     const id = field<string>(create.body, "id");
 
     const deactivate = await request(app)
@@ -64,7 +70,10 @@ describe("admin shipping options (AC-029, AC-030)", () => {
   });
 
   it("[validation] rejects a malformed shipping option body with a 4xx", async () => {
-    const response = await request(app).post("/admin/shipping-options").set(owner).send({ cost: "free" });
+    const response = await request(app)
+      .post("/admin/shipping-options")
+      .set(owner)
+      .send({ cost: "free" });
     expect(response.status).toBeGreaterThanOrEqual(400);
     expect(response.status).toBeLessThan(500);
   });
@@ -72,7 +81,9 @@ describe("admin shipping options (AC-029, AC-030)", () => {
 
 describe("admin shipping routes require owner sign-in (NFR-005)", () => {
   it("[NFR-005] POST /admin/shipping-options returns 401 without a token", async () => {
-    const response = await request(app).post("/admin/shipping-options").send({ name: "x", cost: 1 });
+    const response = await request(app)
+      .post("/admin/shipping-options")
+      .send({ name: "x", cost: 1 });
     expect(response.status).toBe(401);
   });
 

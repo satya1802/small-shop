@@ -19,10 +19,7 @@ const SETTINGS_ID = 1;
 /** The current tax rate and currency, or undefined if none has been set yet. */
 export async function getTaxSettings(): Promise<TaxSettingsApi | undefined> {
   const conn = await db();
-  const [row] = await conn
-    .select()
-    .from(storeSettings)
-    .where(eq(storeSettings.id, SETTINGS_ID));
+  const [row] = await conn.select().from(storeSettings).where(eq(storeSettings.id, SETTINGS_ID));
   if (!row) return undefined;
   return { taxRatePercent: Number(row.taxRatePercent), currency: row.currency };
 }

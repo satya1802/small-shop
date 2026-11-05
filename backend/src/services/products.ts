@@ -51,7 +51,11 @@ function serialize(row: ProductRow): ProductApi {
 /** Published products, newest first -- what shoppers see on GET /products. */
 export async function listPublishedProducts(): Promise<ProductApi[]> {
   const conn = await db();
-  const rows = await conn.select().from(products).where(eq(products.published, true)).orderBy(desc(products.createdAt));
+  const rows = await conn
+    .select()
+    .from(products)
+    .where(eq(products.published, true))
+    .orderBy(desc(products.createdAt));
   return rows.map(serialize);
 }
 
@@ -111,6 +115,9 @@ export async function updateProduct(
 /** Deletes a product outright; returns whether a row was removed. */
 export async function deleteProduct(id: string): Promise<boolean> {
   const conn = await db();
-  const removed = await conn.delete(products).where(eq(products.id, id)).returning({ id: products.id });
+  const removed = await conn
+    .delete(products)
+    .where(eq(products.id, id))
+    .returning({ id: products.id });
   return removed.length > 0;
 }

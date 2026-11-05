@@ -43,7 +43,9 @@ describe("admin tax settings (AC-031)", () => {
 
 describe("admin tax route requires owner sign-in (NFR-005)", () => {
   it("[NFR-005] PUT /admin/settings/tax returns 401 without a token", async () => {
-    const response = await request(app).put("/admin/settings/tax").send({ taxRatePercent: 5, currency: "USD" });
+    const response = await request(app)
+      .put("/admin/settings/tax")
+      .send({ taxRatePercent: 5, currency: "USD" });
     expect(response.status).toBe(401);
   });
 

@@ -41,10 +41,7 @@ function serialize(row: ShippingOptionRow): ShippingOptionApi {
 /** Active shipping options, for GET /shipping-options at checkout. */
 export async function listActiveShippingOptions(): Promise<ShippingOptionApi[]> {
   const conn = await db();
-  const rows = await conn
-    .select()
-    .from(shippingOptions)
-    .where(eq(shippingOptions.active, true));
+  const rows = await conn.select().from(shippingOptions).where(eq(shippingOptions.active, true));
   return rows.map(serialize);
 }
 
