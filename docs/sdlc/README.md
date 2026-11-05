@@ -5,7 +5,7 @@
 <!-- sdlc:auto:start overview -->
 small shop
 
-**Documentation version:** v3
+**Documentation version:** v4
 <!-- sdlc:auto:end overview -->
 
 ## Contents
@@ -15,7 +15,7 @@ small shop
 |---|---|
 | [Requirements](requirements/README.md) | v1 approved |
 | [Architecture](architecture/README.md) | 16 entries |
-| [Development](development/README.md) | 14 entries |
+| [Development](development/README.md) | 7 entries |
 | [Testing](testing/README.md) | 1 entry |
 | [Deployment](deployment/README.md) | 1 entry |
 | [Maintenance](maintenance/README.md) | 1 entry |
@@ -24,14 +24,14 @@ small shop
 | [Decisions (ADRs)](architecture/adr/README.md) | 4 decisions |
 | [Sprint plan](development/sprint-plan.md) | 5 sprints |
 | [Developer guide](development/developer-guide.md) | generated |
-| [API reference](development/api-reference.md) | 1 route |
+| [API reference](development/api-reference.md) | 25 routes |
 | [Test report](testing/test-report.md) | not run yet |
-| [Tests](testing/test-cases.md) | 0 tests |
+| [Tests](testing/test-cases.md) | 68 tests |
 | [Deployment guide](deployment/deployment-guide.md) | not deployed yet |
 | [Runbook](deployment/runbook.md) | not deployed yet |
 | [Release notes](deployment/release-notes.md) | 0 releases |
 | [Traceability matrix](traceability-matrix.md) | 20 requirements |
-| [Changelog](CHANGELOG.md) | 3 versions |
+| [Changelog](CHANGELOG.md) | 4 versions |
 <!-- sdlc:auto:end contents -->
 
 ## Open gaps
@@ -59,14 +59,10 @@ small shop
 
 ### Development
 
-- No information provided on actual development execution: no commit history, ticket/task completion status, code review outcomes, or blockers.
-- Explicit mapping of which stories/tasks belong to which sprint is not given in the input; sprint goals suggest thematic groupings only.
-- Input does not explicitly list which backlog item IDs are assigned to Sprint 1; the related story mapping above is inferred from thematic similarity between the sprint goal and epic descriptions, not confirmed by the input.
-- Input does not explicitly list which backlog item IDs are assigned to Sprint 2; mapping above is inferred from thematic similarity only.
-- Input does not explicitly list which backlog item IDs are assigned to Sprint 3; mapping above is inferred from thematic similarity only.
-- Input does not explicitly list which backlog item IDs are assigned to Sprint 4; mapping above is inferred from thematic similarity only.
-- Input does not explicitly list which backlog item IDs are assigned to Sprint 5; mapping above is inferred from thematic similarity only.
-- No industry/domain compliance skill (e.g. GDPR, CCPA) was named in the input alongside this epic, so specific regulation-to-requirement traceability could not be drawn beyond the generic privacy/consent/deletion stories listed here.
+- Sub-task-level delivery status for US-011-T1 (admin product endpoints), US-011-T2 (admin product create/edit UI), and US-011-T3 (catalogue visibility enforcement) not individually reported -- only story-level status given.
+- Discrepancy: run status says 'completed' but only 5 of 20 planned stories (25%) have recorded tickets -- unclear whether this means the run only executed Sprint 1 and 'completed' refers to that sprint only, or whether later-sprint ticket data was omitted from this input.
+- No delivery evidence (ticket status or commit) exists for US-001, US-002, US-003 (and sub-tasks US-003-T1/T2/T3), US-004 (and sub-tasks), US-005, US-006, US-007 (and sub-tasks), US-008 (and sub-tasks), US-009, US-010, US-012, US-015, US-016, US-017, or US-020.
+- Cannot confirm whether shopping cart, checkout, payment, order placement, order history, admin dashboard/fulfilment, or account deletion features have been built.
 
 ### Testing
 
