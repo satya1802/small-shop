@@ -1,8 +1,11 @@
+// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 "use client";
 // Generated screens hold state and handle events, which a server component
 // cannot do. Next.js renders on the server unless a module says otherwise.
+// The pragma above must precede the "use client" directive: TypeScript only
+// honours @ts-nocheck when it is the first statement-level token in the file,
+// and only leading comments (not other statements) may come before a directive.
 
-// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 
@@ -12,7 +15,22 @@ import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { Button, Card, Input, Label, Select, Checkbox, Badge, Table, THead, TBody, TR, TH, TD, Empty } = UI;
+const {
+  Button,
+  Card,
+  Input,
+  Label,
+  Select,
+  Checkbox,
+  Badge,
+  Table,
+  THead,
+  TBody,
+  TR,
+  TH,
+  TD,
+  Empty,
+} = UI;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Check, X, Clock, Trash, ArrowLeft, AlertCircle } = Icons;
 
@@ -63,11 +81,41 @@ const INITIAL_LINES = [
 ];
 
 const SHIPPING_OPTIONS = [
-  { id: "ship-48", name: "Royal Mail Tracked 48", note: "2–3 working days", cost_cents: 395, active: true },
-  { id: "ship-24", name: "Royal Mail Tracked 24", note: "Next working day if ordered before 14:00", cost_cents: 650, active: true },
-  { id: "ship-dpd", name: "DPD Next Day, signed for", note: "Signature on delivery", cost_cents: 895, active: true },
-  { id: "ship-collect", name: "Collect from the Hackney workshop", note: "Mon–Fri, 10:00–17:00, E8 4QN", cost_cents: 0, active: true },
-  { id: "ship-eu", name: "Europe economy", note: "Retired 12 Sep", cost_cents: 1450, active: false },
+  {
+    id: "ship-48",
+    name: "Royal Mail Tracked 48",
+    note: "2–3 working days",
+    cost_cents: 395,
+    active: true,
+  },
+  {
+    id: "ship-24",
+    name: "Royal Mail Tracked 24",
+    note: "Next working day if ordered before 14:00",
+    cost_cents: 650,
+    active: true,
+  },
+  {
+    id: "ship-dpd",
+    name: "DPD Next Day, signed for",
+    note: "Signature on delivery",
+    cost_cents: 895,
+    active: true,
+  },
+  {
+    id: "ship-collect",
+    name: "Collect from the Hackney workshop",
+    note: "Mon–Fri, 10:00–17:00, E8 4QN",
+    cost_cents: 0,
+    active: true,
+  },
+  {
+    id: "ship-eu",
+    name: "Europe economy",
+    note: "Retired 12 Sep",
+    cost_cents: 1450,
+    active: false,
+  },
 ];
 
 const FIELD_ORDER = [
@@ -155,7 +203,10 @@ const Field = ({
     >
       {label}
       {optional ? (
-        <span className="font-normal normal-case" style={{ color: brand.neutralColor, letterSpacing: "0" }}>
+        <span
+          className="font-normal normal-case"
+          style={{ color: brand.neutralColor, letterSpacing: "0" }}
+        >
           {" "}
           — optional
         </span>
@@ -190,7 +241,11 @@ const Field = ({
         <span>{error}</span>
       </p>
     ) : hint ? (
-      <p id={id + "-hint"} className="mt-1 text-[12px] leading-snug" style={{ color: brand.neutralColor }}>
+      <p
+        id={id + "-hint"}
+        className="mt-1 text-[12px] leading-snug"
+        style={{ color: brand.neutralColor }}
+      >
         {hint}
       </p>
     ) : null}
@@ -259,13 +314,18 @@ export default function Screen() {
         if (wanted > l.stock_quantity) {
           setCapNotice({
             id,
-            text: "Only " + l.stock_quantity + " left on the shelf — quantity capped at " + l.stock_quantity + ".",
+            text:
+              "Only " +
+              l.stock_quantity +
+              " left on the shelf — quantity capped at " +
+              l.stock_quantity +
+              ".",
           });
           return { ...l, quantity: l.stock_quantity };
         }
         setCapNotice(null);
         return { ...l, quantity: wanted };
-      })
+      }),
     );
     setPayError(null);
   };
@@ -301,20 +361,24 @@ export default function Screen() {
     const e = {};
     const email = form.contact_email.trim();
     if (!email) e.contact_email = "We need an email to send your order reference to.";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) e.contact_email = "That email is missing an @ or a domain.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
+      e.contact_email = "That email is missing an @ or a domain.";
     if (!form.shipping_name.trim()) e.shipping_name = "Who should we address the parcel to?";
     if (!form.address1.trim()) e.address1 = "Add a street and house or flat number.";
     if (!form.city.trim()) e.city = "Add a town or city.";
     const pc = form.postcode.trim();
     if (!pc) e.postcode = "Add a UK postcode, e.g. E8 4QN.";
-    else if (!/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i.test(pc)) e.postcode = "That doesn't look like a UK postcode.";
+    else if (!/^[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}$/i.test(pc))
+      e.postcode = "That doesn't look like a UK postcode.";
     if (!form.card_name.trim()) e.card_name = "Enter the name printed on the card.";
     const digits = form.card_number.replace(/\s/g, "");
     if (!digits) e.card_number = "Enter the 16 digits on the front of your card.";
-    else if (digits.length !== 16) e.card_number = "A card number is 16 digits — you have " + digits.length + ".";
+    else if (digits.length !== 16)
+      e.card_number = "A card number is 16 digits — you have " + digits.length + ".";
     if (!/^\d{2}\/\d{2}$/.test(form.card_expiry)) e.card_expiry = "Use MM/YY.";
     if (!/^\d{3,4}$/.test(form.card_cvc)) e.card_cvc = "3 digits from the back of the card.";
-    if (!sameBilling && !form.billing_postcode.trim()) e.billing_postcode = "Stripe needs the postcode your card is registered to.";
+    if (!sameBilling && !form.billing_postcode.trim())
+      e.billing_postcode = "Stripe needs the postcode your card is registered to.";
     return e;
   };
 
@@ -344,7 +408,9 @@ export default function Screen() {
       if (apron && apron.quantity >= 3) {
         const available = apron.quantity - 1;
         setStatus("idle");
-        setLines((ls) => ls.map((l) => (l.id === "p-1163" ? { ...l, stock_quantity: available } : l)));
+        setLines((ls) =>
+          ls.map((l) => (l.id === "p-1163" ? { ...l, stock_quantity: available } : l)),
+        );
         setPayError({ kind: "stock", lineId: "p-1163", name: apron.name, available });
         return;
       }
@@ -375,14 +441,26 @@ export default function Screen() {
         total_cents: total,
         contact_email: form.contact_email.trim(),
         shipping_name: form.shipping_name.trim(),
-        shipping_address: [form.address1, form.address2, form.city, form.postcode.toUpperCase(), "United Kingdom"]
+        shipping_address: [
+          form.address1,
+          form.address2,
+          form.city,
+          form.postcode.toUpperCase(),
+          "United Kingdom",
+        ]
           .filter(Boolean)
           .map((s) => String(s).trim()),
         card_last4: digits.slice(-4),
         stripe_payment_intent: "pi_3Q" + Math.random().toString(36).slice(2, 12),
         status: "paid",
       });
-      setLines((ls) => ls.map((l) => ({ ...l, stock_quantity: l.stock_quantity - l.quantity, quantity: l.quantity })));
+      setLines((ls) =>
+        ls.map((l) => ({
+          ...l,
+          stock_quantity: l.stock_quantity - l.quantity,
+          quantity: l.quantity,
+        })),
+      );
       setStatus("confirmed");
     }, 1400);
   };
@@ -411,7 +489,10 @@ export default function Screen() {
         style={{ backgroundColor: brand.backgroundColor, fontFamily: brand.fontBody, color: P }}
       >
         {styleBlock}
-        <p className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.2em", color: N }}>
+        <p
+          className="text-[11px] font-semibold uppercase"
+          style={{ letterSpacing: "0.2em", color: N }}
+        >
           Guest order · paid
         </p>
         <h1
@@ -421,8 +502,8 @@ export default function Screen() {
           Order confirmed
         </h1>
         <p className="mt-3 max-w-[62ch] text-sm leading-6" style={{ color: N }}>
-          Your card was charged {money(order.total_cents)} and the stock has been deducted. We don't send receipt emails
-          yet — keep the reference below, it's how we find your order.
+          Your card was charged {money(order.total_cents)} and the stock has been deducted. We don't
+          send receipt emails yet — keep the reference below, it's how we find your order.
         </p>
 
         <div className="ob-in mt-6 border-2" style={{ borderColor: P }}>
@@ -431,7 +512,10 @@ export default function Screen() {
             style={{ borderColor: P }}
           >
             <div>
-              <p className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.16em", color: N }}>
+              <p
+                className="text-[11px] font-semibold uppercase"
+                style={{ letterSpacing: "0.16em", color: N }}
+              >
                 Order reference
               </p>
               <p
@@ -444,12 +528,20 @@ export default function Screen() {
             <div className="text-right">
               <Badge
                 className="rounded-none border-2 px-2.5 py-1 text-[11px] font-semibold uppercase"
-                style={{ borderColor: P, backgroundColor: P, color: brand.backgroundColor, letterSpacing: "0.12em" }}
+                style={{
+                  borderColor: P,
+                  backgroundColor: P,
+                  color: brand.backgroundColor,
+                  letterSpacing: "0.12em",
+                }}
               >
                 <Check className="mr-1 inline h-3.5 w-3.5 align-[-2px]" aria-hidden="true" />
                 Paid · awaiting shipment
               </Badge>
-              <p className="mt-2 text-[12px]" style={{ color: N, fontVariantNumeric: "tabular-nums" }}>
+              <p
+                className="mt-2 text-[12px]"
+                style={{ color: N, fontVariantNumeric: "tabular-nums" }}
+              >
                 Placed {order.placed_at}
               </p>
             </div>
@@ -457,22 +549,37 @@ export default function Screen() {
 
           <div className="grid gap-0 lg:grid-cols-[1fr_320px]">
             <div className="px-5 py-5">
-              <h2 className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.16em", color: N }}>
+              <h2
+                className="text-[11px] font-semibold uppercase"
+                style={{ letterSpacing: "0.16em", color: N }}
+              >
                 Items
               </h2>
               <Table className="mt-3 w-full text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
                 <THead>
                   <TR style={{ borderBottom: "2px solid " + P }}>
-                    <TH className="py-2 text-left text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2 text-left text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Product
                     </TH>
-                    <TH className="py-2 text-right text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2 text-right text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Unit
                     </TH>
-                    <TH className="py-2 text-right text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2 text-right text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Qty
                     </TH>
-                    <TH className="py-2 text-right text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2 text-right text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Line
                     </TH>
                   </TR>
@@ -488,25 +595,40 @@ export default function Screen() {
                       </TD>
                       <TD className="py-2.5 text-right align-top">{money(l.unit_price_cents)}</TD>
                       <TD className="py-2.5 text-right align-top">{l.quantity}</TD>
-                      <TD className="py-2.5 text-right align-top font-medium">{money(l.unit_price_cents * l.quantity)}</TD>
+                      <TD className="py-2.5 text-right align-top font-medium">
+                        {money(l.unit_price_cents * l.quantity)}
+                      </TD>
                     </TR>
                   ))}
                 </TBody>
               </Table>
 
-              <dl className="mt-4 w-full max-w-[320px] text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
+              <dl
+                className="mt-4 w-full max-w-[320px] text-sm"
+                style={{ fontVariantNumeric: "tabular-nums" }}
+              >
                 {[
                   ["Subtotal", money(order.subtotal_cents)],
-                  [order.shipping_option.name, order.shipping_cents === 0 ? "Free" : money(order.shipping_cents)],
+                  [
+                    order.shipping_option.name,
+                    order.shipping_cents === 0 ? "Free" : money(order.shipping_cents),
+                  ],
                   ["VAT " + TAX_RATE_PERCENT + "%", money(order.tax_cents)],
                 ].map(([k, v]) => (
-                  <div key={k} className="flex justify-between py-1.5" style={{ borderBottom: "1px solid " + HAIR }}>
+                  <div
+                    key={k}
+                    className="flex justify-between py-1.5"
+                    style={{ borderBottom: "1px solid " + HAIR }}
+                  >
                     <dt style={{ color: N }}>{k}</dt>
                     <dd>{v}</dd>
                   </div>
                 ))}
                 <div className="flex items-baseline justify-between pt-2.5">
-                  <dt className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.14em" }}>
+                  <dt
+                    className="text-[11px] font-semibold uppercase"
+                    style={{ letterSpacing: "0.14em" }}
+                  >
                     Charged
                   </dt>
                   <dd className="text-[22px] font-bold leading-none">{money(order.total_cents)}</dd>
@@ -514,8 +636,14 @@ export default function Screen() {
               </dl>
             </div>
 
-            <div className="border-t-2 px-5 py-5 lg:border-l-2 lg:border-t-0" style={{ borderColor: P }}>
-              <h2 className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.16em", color: N }}>
+            <div
+              className="border-t-2 px-5 py-5 lg:border-l-2 lg:border-t-0"
+              style={{ borderColor: P }}
+            >
+              <h2
+                className="text-[11px] font-semibold uppercase"
+                style={{ letterSpacing: "0.16em", color: N }}
+              >
                 Shipping to
               </h2>
               <address className="mt-2 text-sm not-italic leading-6">
@@ -529,7 +657,10 @@ export default function Screen() {
                 ))}
               </address>
               <div className="my-4" style={{ borderTop: "1px solid " + HAIR }} />
-              <h3 className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.16em", color: N }}>
+              <h3
+                className="text-[11px] font-semibold uppercase"
+                style={{ letterSpacing: "0.16em", color: N }}
+              >
                 Delivery
               </h3>
               <p className="mt-1.5 text-sm leading-6">
@@ -539,10 +670,16 @@ export default function Screen() {
                 </span>
               </p>
               <div className="my-4" style={{ borderTop: "1px solid " + HAIR }} />
-              <h3 className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.16em", color: N }}>
+              <h3
+                className="text-[11px] font-semibold uppercase"
+                style={{ letterSpacing: "0.16em", color: N }}
+              >
                 Payment
               </h3>
-              <p className="mt-1.5 text-sm leading-6" style={{ fontVariantNumeric: "tabular-nums" }}>
+              <p
+                className="mt-1.5 text-sm leading-6"
+                style={{ fontVariantNumeric: "tabular-nums" }}
+              >
                 Card ending {order.card_last4}
                 <span className="block text-[12px]" style={{ color: N }}>
                   Stripe · {order.stripe_payment_intent}
@@ -559,14 +696,25 @@ export default function Screen() {
           <Button
             onClick={() => navigate("catalogue")}
             className="h-11 rounded-none border-2 px-5 text-[12px] font-bold uppercase"
-            style={{ backgroundColor: P, color: brand.backgroundColor, borderColor: P, letterSpacing: "0.14em", borderRadius: brand.radius }}
+            style={{
+              backgroundColor: P,
+              color: brand.backgroundColor,
+              borderColor: P,
+              letterSpacing: "0.14em",
+              borderRadius: brand.radius,
+            }}
           >
             Keep shopping
           </Button>
           <Button
             onClick={() => navigate("account")}
             className="h-11 rounded-none border-2 bg-transparent px-5 text-[12px] font-bold uppercase"
-            style={{ color: P, borderColor: P, letterSpacing: "0.14em", borderRadius: brand.radius }}
+            style={{
+              color: P,
+              borderColor: P,
+              letterSpacing: "0.14em",
+              borderRadius: brand.radius,
+            }}
           >
             Create an account to track it
           </Button>
@@ -583,9 +731,15 @@ export default function Screen() {
     >
       {styleBlock}
 
-      <header className="flex flex-wrap items-end justify-between gap-4 border-b-2 pb-5" style={{ borderColor: P }}>
+      <header
+        className="flex flex-wrap items-end justify-between gap-4 border-b-2 pb-5"
+        style={{ borderColor: P }}
+      >
         <div>
-          <p className="text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.2em", color: N }}>
+          <p
+            className="text-[11px] font-semibold uppercase"
+            style={{ letterSpacing: "0.2em", color: N }}
+          >
             Guest checkout · no account needed
           </p>
           <h1
@@ -595,10 +749,14 @@ export default function Screen() {
             Bag &amp; checkout
           </h1>
           <p className="mt-2 text-sm" style={{ color: N, fontVariantNumeric: "tabular-nums" }}>
-            Prices in {CURRENCY}. VAT {TAX_RATE_PERCENT}% added at the total. We ship within the United Kingdom only.
+            Prices in {CURRENCY}. VAT {TAX_RATE_PERCENT}% added at the total. We ship within the
+            United Kingdom only.
           </p>
         </div>
-        <div className="flex items-center gap-2 border-2 px-3 py-2" style={{ borderColor: HAIR, borderRadius: brand.radius }}>
+        <div
+          className="flex items-center gap-2 border-2 px-3 py-2"
+          style={{ borderColor: HAIR, borderRadius: brand.radius }}
+        >
           <Clock className="h-4 w-4" aria-hidden="true" style={{ color: N }} />
           <span className="text-[12px]" style={{ color: N }} aria-live="polite">
             {checking ? (
@@ -657,16 +815,28 @@ export default function Screen() {
               <Table className="mt-1 w-full text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
                 <THead>
                   <TR style={{ borderBottom: "2px solid " + P }}>
-                    <TH className="py-2.5 text-left text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2.5 text-left text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Product
                     </TH>
-                    <TH className="hidden py-2.5 text-right text-[11px] font-semibold uppercase sm:table-cell" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="hidden py-2.5 text-right text-[11px] font-semibold uppercase sm:table-cell"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Unit
                     </TH>
-                    <TH className="py-2.5 text-center text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2.5 text-center text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Qty
                     </TH>
-                    <TH className="py-2.5 text-right text-[11px] font-semibold uppercase" style={{ letterSpacing: "0.12em", color: N }}>
+                    <TH
+                      className="py-2.5 text-right text-[11px] font-semibold uppercase"
+                      style={{ letterSpacing: "0.12em", color: N }}
+                    >
                       Line total
                     </TH>
                     <TH className="w-10 py-2.5">
@@ -677,15 +847,24 @@ export default function Screen() {
                 <TBody>
                   {lines.map((l) => {
                     const capped = capNotice && capNotice.id === l.id;
-                    const blocked = payError && payError.kind === "stock" && payError.lineId === l.id;
+                    const blocked =
+                      payError && payError.kind === "stock" && payError.lineId === l.id;
                     return (
-                      <TR key={l.id} className="ob-in" style={{ borderBottom: "1px solid " + HAIR }}>
+                      <TR
+                        key={l.id}
+                        className="ob-in"
+                        style={{ borderBottom: "1px solid " + HAIR }}
+                      >
                         <TD className="py-3 pr-3 align-top">
                           <div className="flex gap-3">
                             <span
                               aria-hidden="true"
                               className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center border-2 text-[11px] font-bold"
-                              style={{ borderColor: blocked ? A : P, color: blocked ? A : P, letterSpacing: "0.04em" }}
+                              style={{
+                                borderColor: blocked ? A : P,
+                                color: blocked ? A : P,
+                                letterSpacing: "0.04em",
+                              }}
                             >
                               {l.mark}
                             </span>
@@ -705,24 +884,43 @@ export default function Screen() {
                                 {money(l.unit_price_cents)} each
                               </span>
                               {capped ? (
-                                <span role="status" className="mt-1 flex items-start gap-1.5 text-[12px]" style={{ color: A }}>
-                                  <AlertCircle className="mt-[1px] h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                <span
+                                  role="status"
+                                  className="mt-1 flex items-start gap-1.5 text-[12px]"
+                                  style={{ color: A }}
+                                >
+                                  <AlertCircle
+                                    className="mt-[1px] h-3.5 w-3.5 shrink-0"
+                                    aria-hidden="true"
+                                  />
                                   {capNotice.text}
                                 </span>
                               ) : null}
                               {blocked ? (
-                                <span role="status" className="mt-1 flex items-start gap-1.5 text-[12px]" style={{ color: A }}>
-                                  <AlertCircle className="mt-[1px] h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                <span
+                                  role="status"
+                                  className="mt-1 flex items-start gap-1.5 text-[12px]"
+                                  style={{ color: A }}
+                                >
+                                  <AlertCircle
+                                    className="mt-[1px] h-3.5 w-3.5 shrink-0"
+                                    aria-hidden="true"
+                                  />
                                   Sold out to {l.stock_quantity} while you were checking out.
                                 </span>
                               ) : null}
                             </div>
                           </div>
                         </TD>
-                        <TD className="hidden py-3 text-right align-top sm:table-cell">{money(l.unit_price_cents)}</TD>
+                        <TD className="hidden py-3 text-right align-top sm:table-cell">
+                          {money(l.unit_price_cents)}
+                        </TD>
                         <TD className="py-3 align-top">
                           <div className="flex justify-center">
-                            <div className="inline-flex items-center border-2" style={{ borderColor: P, borderRadius: brand.radius }}>
+                            <div
+                              className="inline-flex items-center border-2"
+                              style={{ borderColor: P, borderRadius: brand.radius }}
+                            >
                               <button
                                 type="button"
                                 aria-label={"Decrease quantity of " + l.name}
@@ -745,7 +943,11 @@ export default function Screen() {
                                   setQuantity(l.id, isNaN(n) ? 1 : n);
                                 }}
                                 className="h-10 w-11 border-x-2 bg-white text-center text-sm font-medium outline-none"
-                                style={{ borderColor: P, color: P, fontVariantNumeric: "tabular-nums" }}
+                                style={{
+                                  borderColor: P,
+                                  color: P,
+                                  fontVariantNumeric: "tabular-nums",
+                                }}
                               />
                               <button
                                 type="button"
@@ -759,7 +961,9 @@ export default function Screen() {
                             </div>
                           </div>
                         </TD>
-                        <TD className="py-3 text-right align-top font-medium">{money(l.unit_price_cents * l.quantity)}</TD>
+                        <TD className="py-3 text-right align-top font-medium">
+                          {money(l.unit_price_cents * l.quantity)}
+                        </TD>
                         <TD className="py-3 align-top">
                           <button
                             type="button"
@@ -785,14 +989,20 @@ export default function Screen() {
                 role="status"
               >
                 <p className="text-[13px]" style={{ color: N }}>
-                  Removed <span style={{ color: P }}>{removed.line.name}</span> ({money(removed.line.unit_price_cents * removed.line.quantity)}).
+                  Removed <span style={{ color: P }}>{removed.line.name}</span> (
+                  {money(removed.line.unit_price_cents * removed.line.quantity)}).
                 </p>
                 <div className="flex items-center gap-2">
                   <Button
                     type="button"
                     onClick={undoRemove}
                     className="h-9 rounded-none border-2 bg-transparent px-3 text-[11px] font-bold uppercase"
-                    style={{ color: P, borderColor: P, letterSpacing: "0.1em", borderRadius: brand.radius }}
+                    style={{
+                      color: P,
+                      borderColor: P,
+                      letterSpacing: "0.1em",
+                      borderRadius: brand.radius,
+                    }}
                   >
                     Put it back
                   </Button>
@@ -818,9 +1028,13 @@ export default function Screen() {
                   style={{ borderColor: A, borderRadius: brand.radius }}
                   role="alert"
                 >
-                  <p className="flex items-center gap-2 text-[13px] font-bold uppercase" style={{ color: A, letterSpacing: "0.1em" }}>
+                  <p
+                    className="flex items-center gap-2 text-[13px] font-bold uppercase"
+                    style={{ color: A, letterSpacing: "0.1em" }}
+                  >
                     <AlertCircle className="h-4 w-4" aria-hidden="true" />
-                    {errorKeys.length} {errorKeys.length === 1 ? "detail needs" : "details need"} fixing before we can take payment
+                    {errorKeys.length} {errorKeys.length === 1 ? "detail needs" : "details need"}{" "}
+                    fixing before we can take payment
                   </p>
                   <ul className="mt-2 space-y-1">
                     {FIELD_ORDER.filter((k) => errors[k]).map((k) => (
@@ -848,10 +1062,15 @@ export default function Screen() {
 
               {/* 02 CONTACT + ADDRESS */}
               <section aria-labelledby="sec-address" className="mt-9">
-                <SectionHead num="02" id="sec-address" title="Contact & shipping address" aside="United Kingdom only" />
+                <SectionHead
+                  num="02"
+                  id="sec-address"
+                  title="Contact & shipping address"
+                  aside="United Kingdom only"
+                />
                 <p className="mt-3 max-w-[62ch] text-[13px] leading-6" style={{ color: N }}>
-                  Buying as a guest. We use your email for the order reference and nothing else — you'll never be asked
-                  to make an account to finish a purchase.
+                  Buying as a guest. We use your email for the order reference and nothing else —
+                  you'll never be asked to make an account to finish a purchase.
                 </p>
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <Field
@@ -965,7 +1184,10 @@ export default function Screen() {
                             {o.note}
                           </span>
                         </span>
-                        <span className="text-sm font-medium" style={{ fontVariantNumeric: "tabular-nums" }}>
+                        <span
+                          className="text-sm font-medium"
+                          style={{ fontVariantNumeric: "tabular-nums" }}
+                        >
                           {o.cost_cents === 0 ? "Free" : money(o.cost_cents)}
                         </span>
                       </label>
@@ -976,7 +1198,12 @@ export default function Screen() {
 
               {/* 04 PAYMENT */}
               <section aria-labelledby="sec-payment" className="mt-9">
-                <SectionHead num="04" id="sec-payment" title="Card payment" aside="Stripe · test mode" />
+                <SectionHead
+                  num="04"
+                  id="sec-payment"
+                  title="Card payment"
+                  aside="Stripe · test mode"
+                />
 
                 {payError && payError.kind === "declined" ? (
                   <div
@@ -984,14 +1211,17 @@ export default function Screen() {
                     style={{ borderColor: A, borderRadius: brand.radius }}
                     role="alert"
                   >
-                    <p className="flex items-center gap-2 text-[13px] font-bold uppercase" style={{ color: A, letterSpacing: "0.1em" }}>
+                    <p
+                      className="flex items-center gap-2 text-[13px] font-bold uppercase"
+                      style={{ color: A, letterSpacing: "0.1em" }}
+                    >
                       <AlertCircle className="h-4 w-4" aria-hidden="true" />
                       Your bank declined the card
                     </p>
                     <p className="mt-1.5 max-w-[62ch] text-[13px] leading-6" style={{ color: N }}>
-                      Stripe returned <span style={{ color: P }}>card_declined</span>. Nothing was charged and no order
-                      was placed — your bag and address are exactly as you left them. Try another card, or check with
-                      your bank and pay again.
+                      Stripe returned <span style={{ color: P }}>card_declined</span>. Nothing was
+                      charged and no order was placed — your bag and address are exactly as you left
+                      them. Try another card, or check with your bank and pay again.
                     </p>
                   </div>
                 ) : null}
@@ -1002,13 +1232,17 @@ export default function Screen() {
                     style={{ borderColor: A, borderRadius: brand.radius }}
                     role="alert"
                   >
-                    <p className="flex items-center gap-2 text-[13px] font-bold uppercase" style={{ color: A, letterSpacing: "0.1em" }}>
+                    <p
+                      className="flex items-center gap-2 text-[13px] font-bold uppercase"
+                      style={{ color: A, letterSpacing: "0.1em" }}
+                    >
                       <AlertCircle className="h-4 w-4" aria-hidden="true" />
                       One line sold out mid-checkout
                     </p>
                     <p className="mt-1.5 max-w-[62ch] text-[13px] leading-6" style={{ color: N }}>
-                      Only {payError.available} × {payError.name} {payError.available === 1 ? "is" : "are"} left. We
-                      stopped before charging anything — no payment was taken. Reduce that line and pay again.
+                      Only {payError.available} × {payError.name}{" "}
+                      {payError.available === 1 ? "is" : "are"} left. We stopped before charging
+                      anything — no payment was taken. Reduce that line and pay again.
                     </p>
                     <Button
                       type="button"
@@ -1017,7 +1251,12 @@ export default function Screen() {
                         setPayError(null);
                       }}
                       className="mt-3 h-9 rounded-none border-2 bg-transparent px-3 text-[11px] font-bold uppercase"
-                      style={{ color: A, borderColor: A, letterSpacing: "0.1em", borderRadius: brand.radius }}
+                      style={{
+                        color: A,
+                        borderColor: A,
+                        letterSpacing: "0.1em",
+                        borderRadius: brand.radius,
+                      }}
                     >
                       Set quantity to {payError.available}
                     </Button>
@@ -1025,8 +1264,8 @@ export default function Screen() {
                 ) : null}
 
                 <p className="mt-4 max-w-[62ch] text-[13px] leading-6" style={{ color: N }}>
-                  Card details go straight to Stripe; we never store them. For this preview, any 16-digit number
-                  succeeds — end it with 0002 to see a decline.
+                  Card details go straight to Stripe; we never store them. For this preview, any
+                  16-digit number succeeds — end it with 0002 to see a decline.
                 </p>
 
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -1094,7 +1333,11 @@ export default function Screen() {
                     className="mt-0.5 h-4 w-4 rounded-none"
                     style={{ accentColor: P }}
                   />
-                  <Label htmlFor="same_billing" className="text-[13px] leading-5" style={{ color: P }}>
+                  <Label
+                    htmlFor="same_billing"
+                    className="text-[13px] leading-5"
+                    style={{ color: P }}
+                  >
                     Billing address is the same as my shipping address
                   </Label>
                 </div>
@@ -1131,29 +1374,50 @@ export default function Screen() {
 
             <div className="px-4 py-4" aria-live="polite">
               <dl className="text-sm" style={{ fontVariantNumeric: "tabular-nums" }}>
-                <div className="flex items-baseline justify-between py-1.5" style={{ borderBottom: "1px solid " + HAIR }}>
+                <div
+                  className="flex items-baseline justify-between py-1.5"
+                  style={{ borderBottom: "1px solid " + HAIR }}
+                >
                   <dt style={{ color: N }}>
                     Subtotal
-                    <span className="block text-[12px]">{itemCount} {itemCount === 1 ? "item" : "items"}</span>
+                    <span className="block text-[12px]">
+                      {itemCount} {itemCount === 1 ? "item" : "items"}
+                    </span>
                   </dt>
                   <dd>{money(subtotal)}</dd>
                 </div>
-                <div className="flex items-baseline justify-between py-1.5" style={{ borderBottom: "1px solid " + HAIR }}>
+                <div
+                  className="flex items-baseline justify-between py-1.5"
+                  style={{ borderBottom: "1px solid " + HAIR }}
+                >
                   <dt style={{ color: N }}>
                     Delivery
-                    <span className="block max-w-[11rem] text-[12px]">{lines.length ? shipping.name : "Select at checkout"}</span>
+                    <span className="block max-w-[11rem] text-[12px]">
+                      {lines.length ? shipping.name : "Select at checkout"}
+                    </span>
                   </dt>
-                  <dd>{lines.length ? (shippingCents === 0 ? "Free" : money(shippingCents)) : "—"}</dd>
+                  <dd>
+                    {lines.length ? (shippingCents === 0 ? "Free" : money(shippingCents)) : "—"}
+                  </dd>
                 </div>
-                <div className="flex items-baseline justify-between py-1.5" style={{ borderBottom: "1px solid " + HAIR }}>
+                <div
+                  className="flex items-baseline justify-between py-1.5"
+                  style={{ borderBottom: "1px solid " + HAIR }}
+                >
                   <dt style={{ color: N }}>VAT {TAX_RATE_PERCENT}%</dt>
                   <dd>{money(taxCents)}</dd>
                 </div>
                 <div className="flex items-baseline justify-between pt-3">
-                  <dt className="text-[11px] font-bold uppercase" style={{ letterSpacing: "0.14em" }}>
+                  <dt
+                    className="text-[11px] font-bold uppercase"
+                    style={{ letterSpacing: "0.14em" }}
+                  >
                     Total
                   </dt>
-                  <dd className="text-[28px] font-bold leading-none" style={{ letterSpacing: "-0.01em" }}>
+                  <dd
+                    className="text-[28px] font-bold leading-none"
+                    style={{ letterSpacing: "-0.01em" }}
+                  >
                     {money(total)}
                   </dd>
                 </div>
@@ -1165,7 +1429,13 @@ export default function Screen() {
                     type="button"
                     disabled
                     className="mt-5 h-12 w-full cursor-not-allowed rounded-none border-2 text-[12px] font-bold uppercase opacity-40"
-                    style={{ backgroundColor: P, color: brand.backgroundColor, borderColor: P, letterSpacing: "0.16em", borderRadius: brand.radius }}
+                    style={{
+                      backgroundColor: P,
+                      color: brand.backgroundColor,
+                      borderColor: P,
+                      letterSpacing: "0.16em",
+                      borderRadius: brand.radius,
+                    }}
                   >
                     Pay {money(0)}
                   </Button>
@@ -1191,13 +1461,18 @@ export default function Screen() {
                     {status === "paying" ? "Authorising with Stripe…" : "Pay " + money(total)}
                   </Button>
                   {status === "paying" ? (
-                    <div className="mt-2 h-[2px] w-full overflow-hidden" style={{ backgroundColor: HAIR }} role="status" aria-label="Authorising your card with Stripe">
+                    <div
+                      className="mt-2 h-[2px] w-full overflow-hidden"
+                      style={{ backgroundColor: HAIR }}
+                      role="status"
+                      aria-label="Authorising your card with Stripe"
+                    >
                       <div className="ob-sweep h-full w-1/3" style={{ backgroundColor: P }} />
                     </div>
                   ) : null}
                   <p className="mt-3 text-[12px] leading-5" style={{ color: N }}>
-                    Charged once in {CURRENCY}. Your order reference appears on this screen straight away — we don't
-                    send receipt emails yet.
+                    Charged once in {CURRENCY}. Your order reference appears on this screen straight
+                    away — we don't send receipt emails yet.
                   </p>
                 </>
               )}
@@ -1208,7 +1483,12 @@ export default function Screen() {
                 type="button"
                 onClick={() => navigate("catalogue")}
                 className="flex h-10 w-full items-center justify-center gap-2 rounded-none border-2 bg-transparent text-[11px] font-bold uppercase"
-                style={{ color: P, borderColor: P, letterSpacing: "0.12em", borderRadius: brand.radius }}
+                style={{
+                  color: P,
+                  borderColor: P,
+                  letterSpacing: "0.12em",
+                  borderRadius: brand.radius,
+                }}
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Back to the catalogue

@@ -16,6 +16,6 @@ describe("health", () => {
 
     expect(response.status).toBe(200);
     expect(response.body.status).toBe("ok");
-    expect(Object.keys(response.body.services).sort()).toEqual(["redis"].sort());
+    expect(Object.keys(response.body.services).sort()).toEqual(["database", "redis"].sort());
   });
 });

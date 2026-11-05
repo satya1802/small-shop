@@ -6,6 +6,7 @@
  * what the running deployment can actually reach.
  */
 export const SERVICES: Record<string, string> = {
+  database: "DATABASE_URL",
   redis: "REDIS_URL",
 };
 

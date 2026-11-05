@@ -1,8 +1,11 @@
+// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 "use client";
 // Generated screens hold state and handle events, which a server component
 // cannot do. Next.js renders on the server unless a module says otherwise.
+// The pragma above must precede the "use client" directive: TypeScript only
+// honours @ts-nocheck when it is the first statement-level token in the file,
+// and only leading comments (not other statements) may come before a directive.
 
-// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 
@@ -12,9 +15,37 @@ import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { Button, Card, Input, Label, Select, Checkbox, Switch, Table, THead, TBody, TR, TH, TD, Tabs, Stat, Empty } = UI;
+const {
+  Button,
+  Card,
+  Input,
+  Label,
+  Select,
+  Checkbox,
+  Switch,
+  Table,
+  THead,
+  TBody,
+  TR,
+  TH,
+  TD,
+  Tabs,
+  Stat,
+  Empty,
+} = UI;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { Search, Check, ChevronRight, ChevronDown, Package, Clock, Trash, Filter, AlertCircle, CheckCircle } = Icons;
+const {
+  Search,
+  Check,
+  ChevronRight,
+  ChevronDown,
+  Package,
+  Clock,
+  Trash,
+  Filter,
+  AlertCircle,
+  CheckCircle,
+} = Icons;
 
 const INK = brand.primaryColor;
 const ACCENT = brand.accentColor;
@@ -232,7 +263,7 @@ export default function Screen() {
       list = list.filter(
         (o) =>
           o.order_reference.toLowerCase().includes(q) ||
-          o.items.some((i) => i.product_name.toLowerCase().includes(q))
+          o.items.some((i) => i.product_name.toLowerCase().includes(q)),
       );
     }
     const sorted = [...list];
@@ -260,7 +291,7 @@ export default function Screen() {
       setSiBusy(false);
       if (siEmail.trim().toLowerCase() !== ACCOUNT_EMAIL) {
         setSiErr(
-          `No account is registered to ${siEmail.trim()}. Orders placed as a guest aren't linked to an account — check the email, or create an account.`
+          `No account is registered to ${siEmail.trim()}. Orders placed as a guest aren't linked to an account — check the email, or create an account.`,
         );
         return;
       }
@@ -287,7 +318,9 @@ export default function Screen() {
     later(() => {
       setRgBusy(false);
       if (rgEmail.trim().toLowerCase() === ACCOUNT_EMAIL) {
-        setRgErr("That email already has an account. Sign in instead — your orders are waiting there.");
+        setRgErr(
+          "That email already has an account. Sign in instead — your orders are waiting there.",
+        );
         return;
       }
       setDeletedNotice(null);
@@ -314,7 +347,7 @@ export default function Screen() {
   function confirmDelete(e) {
     e.preventDefault();
     if (deleteWord.trim().toUpperCase() !== "DELETE") {
-      setDeleteErr('Type DELETE in capitals to confirm. Nothing has been removed.');
+      setDeleteErr("Type DELETE in capitals to confirm. Nothing has been removed.");
       return;
     }
     setDeleteErr(null);
@@ -331,8 +364,18 @@ export default function Screen() {
   }
 
   const labelCls = "block text-[11px] uppercase tracking-[0.14em] font-bold";
-  const inputStyle = { border: `2px solid ${INK}`, borderRadius: R, backgroundColor: PAPER, color: INK };
-  const errInputStyle = { border: `2px solid ${ACCENT}`, borderRadius: R, backgroundColor: PAPER, color: INK };
+  const inputStyle = {
+    border: `2px solid ${INK}`,
+    borderRadius: R,
+    backgroundColor: PAPER,
+    color: INK,
+  };
+  const errInputStyle = {
+    border: `2px solid ${ACCENT}`,
+    borderRadius: R,
+    backgroundColor: PAPER,
+    color: INK,
+  };
 
   const primaryBtn = {
     backgroundColor: INK,
@@ -377,9 +420,17 @@ export default function Screen() {
         role={tone === "accent" ? "alert" : undefined}
       >
         {tone === "accent" ? (
-          <AlertCircle className="w-4 h-4 shrink-0 mt-[2px]" style={{ color: c }} aria-hidden="true" />
+          <AlertCircle
+            className="w-4 h-4 shrink-0 mt-[2px]"
+            style={{ color: c }}
+            aria-hidden="true"
+          />
         ) : (
-          <CheckCircle className="w-4 h-4 shrink-0 mt-[2px]" style={{ color: c }} aria-hidden="true" />
+          <CheckCircle
+            className="w-4 h-4 shrink-0 mt-[2px]"
+            style={{ color: c }}
+            aria-hidden="true"
+          />
         )}
         <div className="text-[13px] leading-relaxed" style={{ color: INK }}>
           {children}
@@ -394,7 +445,12 @@ export default function Screen() {
     return (
       <span
         className="inline-flex items-center gap-1.5 px-2 py-[3px] text-[11px] uppercase tracking-[0.12em] font-bold whitespace-nowrap"
-        style={{ border: `2px solid ${c}`, color: c, borderRadius: R, backgroundColor: "transparent" }}
+        style={{
+          border: `2px solid ${c}`,
+          color: c,
+          borderRadius: R,
+          backgroundColor: "transparent",
+        }}
       >
         {isPlaced ? (
           <Clock className="w-3 h-3" aria-hidden="true" />
@@ -412,7 +468,11 @@ export default function Screen() {
         <span className={strong ? "text-[13px] font-bold" : "text-[13px]"} style={{ color: INK }}>
           {label}
         </span>
-        <span className="flex-1 border-b border-dotted" style={{ borderColor: HAIR }} aria-hidden="true" />
+        <span
+          className="flex-1 border-b border-dotted"
+          style={{ borderColor: HAIR }}
+          aria-hidden="true"
+        />
         <span
           className={strong ? "text-[13px] font-bold" : "text-[13px]"}
           style={{ color: INK, fontVariantNumeric: "tabular-nums" }}
@@ -443,17 +503,17 @@ export default function Screen() {
             My account
           </h1>
           <p className="mt-3 text-[14px] leading-relaxed max-w-[62ch]" style={{ color: MUTED }}>
-            An account is only for looking back: your past orders, their references and whether they have
-            left the workshop. You never need one to buy.
+            An account is only for looking back: your past orders, their references and whether they
+            have left the workshop. You never need one to buy.
           </p>
 
           {deletedNotice && (
             <div className="mt-6">
               <Banner>
-                <strong className="font-bold">Account deleted.</strong> The account for {deletedNotice} and
-                its personal data were removed on 4 Nov 2026. Order records stay on file for seven years as
-                Dutch tax law requires, with your name and address stripped out. You can register again at
-                any time.
+                <strong className="font-bold">Account deleted.</strong> The account for{" "}
+                {deletedNotice} and its personal data were removed on 4 Nov 2026. Order records stay
+                on file for seven years as Dutch tax law requires, with your name and address
+                stripped out. You can register again at any time.
               </Banner>
             </div>
           )}
@@ -473,7 +533,10 @@ export default function Screen() {
                 <div style={{ borderTop: `2px solid ${INK}` }} className="p-5 md:p-6">
                   {signingInTab ? (
                     <form onSubmit={submitSignIn} noValidate>
-                      <h2 className="text-[20px] font-bold tracking-[-0.01em]" style={{ fontFamily: brand.fontHeading }}>
+                      <h2
+                        className="text-[20px] font-bold tracking-[-0.01em]"
+                        style={{ fontFamily: brand.fontHeading }}
+                      >
                         Sign in to see your orders
                       </h2>
                       <p className="mt-1 text-[13px]" style={{ color: MUTED }}>
@@ -500,7 +563,10 @@ export default function Screen() {
                             aria-invalid={siFieldErr.email ? "true" : undefined}
                             aria-describedby={siFieldErr.email ? "signin-email-err" : undefined}
                             className={`mt-1.5 w-full h-11 px-3 text-[14px] ${FOCUS}`}
-                            style={{ ...(siFieldErr.email ? errInputStyle : inputStyle), outlineColor: ACCENT }}
+                            style={{
+                              ...(siFieldErr.email ? errInputStyle : inputStyle),
+                              outlineColor: ACCENT,
+                            }}
                           />
                           <span id="signin-email-err">
                             <FieldNote>{siFieldErr.email}</FieldNote>
@@ -518,9 +584,14 @@ export default function Screen() {
                             value={siPass}
                             onChange={(e) => setSiPass(e.target.value)}
                             aria-invalid={siFieldErr.password ? "true" : undefined}
-                            aria-describedby={siFieldErr.password ? "signin-password-err" : undefined}
+                            aria-describedby={
+                              siFieldErr.password ? "signin-password-err" : undefined
+                            }
                             className={`mt-1.5 w-full h-11 px-3 text-[14px] ${FOCUS}`}
-                            style={{ ...(siFieldErr.password ? errInputStyle : inputStyle), outlineColor: ACCENT }}
+                            style={{
+                              ...(siFieldErr.password ? errInputStyle : inputStyle),
+                              outlineColor: ACCENT,
+                            }}
                           />
                           <span id="signin-password-err">
                             <FieldNote>{siFieldErr.password}</FieldNote>
@@ -563,7 +634,10 @@ export default function Screen() {
                     </form>
                   ) : (
                     <form onSubmit={submitRegister} noValidate>
-                      <h2 className="text-[20px] font-bold tracking-[-0.01em]" style={{ fontFamily: brand.fontHeading }}>
+                      <h2
+                        className="text-[20px] font-bold tracking-[-0.01em]"
+                        style={{ fontFamily: brand.fontHeading }}
+                      >
                         Create an account
                       </h2>
                       <p className="mt-1 text-[13px]" style={{ color: MUTED }}>
@@ -590,7 +664,10 @@ export default function Screen() {
                             aria-invalid={rgFieldErr.email ? "true" : undefined}
                             aria-describedby={rgFieldErr.email ? "reg-email-err" : undefined}
                             className={`mt-1.5 w-full h-11 px-3 text-[14px] ${FOCUS}`}
-                            style={{ ...(rgFieldErr.email ? errInputStyle : inputStyle), outlineColor: ACCENT }}
+                            style={{
+                              ...(rgFieldErr.email ? errInputStyle : inputStyle),
+                              outlineColor: ACCENT,
+                            }}
                           />
                           <span id="reg-email-err">
                             <FieldNote>{rgFieldErr.email}</FieldNote>
@@ -608,16 +685,25 @@ export default function Screen() {
                             value={rgPass}
                             onChange={(e) => setRgPass(e.target.value)}
                             aria-invalid={rgFieldErr.password ? "true" : undefined}
-                            aria-describedby={rgFieldErr.password ? "reg-password-err" : "reg-password-hint"}
+                            aria-describedby={
+                              rgFieldErr.password ? "reg-password-err" : "reg-password-hint"
+                            }
                             className={`mt-1.5 w-full h-11 px-3 text-[14px] ${FOCUS}`}
-                            style={{ ...(rgFieldErr.password ? errInputStyle : inputStyle), outlineColor: ACCENT }}
+                            style={{
+                              ...(rgFieldErr.password ? errInputStyle : inputStyle),
+                              outlineColor: ACCENT,
+                            }}
                           />
                           {rgFieldErr.password ? (
                             <span id="reg-password-err">
                               <FieldNote>{rgFieldErr.password}</FieldNote>
                             </span>
                           ) : (
-                            <p id="reg-password-hint" className="mt-1 text-[12px]" style={{ color: MUTED }}>
+                            <p
+                              id="reg-password-hint"
+                              className="mt-1 text-[12px]"
+                              style={{ color: MUTED }}
+                            >
                               At least 8 characters.
                             </p>
                           )}
@@ -634,9 +720,12 @@ export default function Screen() {
                               className={`mt-[3px] ${FOCUS}`}
                               style={{ accentColor: INK, outlineColor: ACCENT }}
                             />
-                            <Label htmlFor="reg-consent" className="text-[13px] leading-snug font-normal">
-                              I have read how Quorq uses my data: email for sign-in, order records for
-                              seven years. No marketing without a separate opt-in.
+                            <Label
+                              htmlFor="reg-consent"
+                              className="text-[13px] leading-snug font-normal"
+                            >
+                              I have read how Quorq uses my data: email for sign-in, order records
+                              for seven years. No marketing without a separate opt-in.
                             </Label>
                           </div>
                           <FieldNote>{rgFieldErr.consent}</FieldNote>
@@ -680,7 +769,10 @@ export default function Screen() {
 
             <aside className="lg:col-span-5">
               <div className="p-5" style={{ border: `2px solid ${INK}`, borderRadius: R }}>
-                <h2 className="text-[16px] font-bold tracking-[-0.01em]" style={{ fontFamily: brand.fontHeading }}>
+                <h2
+                  className="text-[16px] font-bold tracking-[-0.01em]"
+                  style={{ fontFamily: brand.fontHeading }}
+                >
                   You don't need an account to buy
                 </h2>
                 <ul className="mt-3 space-y-2.5">
@@ -690,7 +782,11 @@ export default function Screen() {
                     "An account only adds a list of what you've already bought.",
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-2 text-[13px] leading-relaxed">
-                      <ChevronRight className="w-3.5 h-3.5 mt-[3px] shrink-0" style={{ color: ACCENT }} aria-hidden="true" />
+                      <ChevronRight
+                        className="w-3.5 h-3.5 mt-[3px] shrink-0"
+                        style={{ color: ACCENT }}
+                        aria-hidden="true"
+                      />
                       <span style={{ color: INK }}>{line}</span>
                     </li>
                   ))}
@@ -716,13 +812,16 @@ export default function Screen() {
               </div>
 
               <div className="mt-4 p-5" style={{ border: `1px solid ${HAIR}`, borderRadius: R }}>
-                <h3 className="text-[11px] uppercase tracking-[0.16em] font-bold" style={{ color: MUTED }}>
+                <h3
+                  className="text-[11px] uppercase tracking-[0.16em] font-bold"
+                  style={{ color: MUTED }}
+                >
                   Who can see an order
                 </h3>
                 <p className="mt-2 text-[13px] leading-relaxed" style={{ color: INK }}>
-                  Order history is visible only to the signed-in account that placed the order. Orders
-                  placed as a guest are not shown here — the shop can look one up by reference and the
-                  email you used.
+                  Order history is visible only to the signed-in account that placed the order.
+                  Orders placed as a guest are not shown here — the shop can look one up by
+                  reference and the email you used.
                 </p>
               </div>
             </aside>
@@ -744,7 +843,10 @@ export default function Screen() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.2em] font-bold" style={{ color: MUTED }}>
+            <p
+              className="text-[11px] uppercase tracking-[0.2em] font-bold"
+              style={{ color: MUTED }}
+            >
               Signed in · {session.email}
             </p>
             <h1
@@ -754,7 +856,8 @@ export default function Screen() {
               My account
             </h1>
             <p className="mt-2 text-[13px]" style={{ color: MUTED }}>
-              Account created {longDate(session.created_at)} · Orders placed as a guest aren't listed here.
+              Account created {longDate(session.created_at)} · Orders placed as a guest aren't
+              listed here.
             </p>
           </div>
           <Button
@@ -770,8 +873,8 @@ export default function Screen() {
         {isNewAccount ? (
           <div className="mt-6">
             <Banner>
-              <strong className="font-bold">Account created.</strong> You're signed in as {session.email}.
-              Next order you place while signed in will appear below.
+              <strong className="font-bold">Account created.</strong> You're signed in as{" "}
+              {session.email}. Next order you place while signed in will appear below.
             </Banner>
           </div>
         ) : null}
@@ -797,7 +900,11 @@ export default function Screen() {
             <Stat
               label="Awaiting shipment"
               value={String(counts.placed)}
-              hint={counts.placed ? "Dispatched Mon–Fri from Utrecht" : "Everything has left the workshop"}
+              hint={
+                counts.placed
+                  ? "Dispatched Mon–Fri from Utrecht"
+                  : "Everything has left the workshop"
+              }
               className="p-4"
             />
           </div>
@@ -823,7 +930,11 @@ export default function Screen() {
                 style={{ color: sync.state === "stale" ? MUTED : INK }}
               >
                 {sync.state === "busy" ? (
-                  <span className="obs-blink inline-block w-2 h-2" style={{ backgroundColor: INK }} aria-hidden="true" />
+                  <span
+                    className="obs-blink inline-block w-2 h-2"
+                    style={{ backgroundColor: INK }}
+                    aria-hidden="true"
+                  />
                 ) : (
                   <Clock className="w-3.5 h-3.5" aria-hidden="true" />
                 )}
@@ -951,28 +1062,49 @@ export default function Screen() {
               </div>
             ) : (
               <div className="overflow-x-auto" style={{ borderTop: `2px solid ${INK}` }}>
-                <Table className="w-full min-w-[720px] text-[13px]" style={{ fontVariantNumeric: "tabular-nums" }}>
+                <Table
+                  className="w-full min-w-[720px] text-[13px]"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
                   <caption className="sr-only">
                     Your orders: reference, date, items, total and status
                   </caption>
                   <THead>
                     <TR style={{ borderBottom: `2px solid ${INK}` }}>
-                      <TH scope="col" className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Reference
                       </TH>
-                      <TH scope="col" className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Date
                       </TH>
-                      <TH scope="col" className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Items
                       </TH>
-                      <TH scope="col" className="text-right px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="text-right px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Total
                       </TH>
-                      <TH scope="col" className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="text-left px-4 py-2.5 text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Status
                       </TH>
-                      <TH scope="col" className="px-4 py-2.5 text-right text-[11px] uppercase tracking-[0.14em]">
+                      <TH
+                        scope="col"
+                        className="px-4 py-2.5 text-right text-[11px] uppercase tracking-[0.14em]"
+                      >
                         Receipt
                       </TH>
                     </TR>
@@ -995,14 +1127,15 @@ export default function Screen() {
                             >
                               {o.order_reference}
                             </TH>
-                            <TD className="px-4 py-3 align-top whitespace-nowrap" style={{ color: MUTED }}>
+                            <TD
+                              className="px-4 py-3 align-top whitespace-nowrap"
+                              style={{ color: MUTED }}
+                            >
                               {longDate(o.created_at)}
                             </TD>
                             <TD className="px-4 py-3 align-top">
                               <span className="font-medium">{first}</span>
-                              {rest > 0 && (
-                                <span style={{ color: MUTED }}> + {rest} more</span>
-                              )}
+                              {rest > 0 && <span style={{ color: MUTED }}> + {rest} more</span>}
                               <span className="block text-[12px]" style={{ color: MUTED }}>
                                 {units} {units === 1 ? "unit" : "units"}
                               </span>
@@ -1028,7 +1161,10 @@ export default function Screen() {
                                   <ChevronRight className="w-3.5 h-3.5" aria-hidden="true" />
                                 )}
                                 {open ? "Hide" : "Open"}
-                                <span className="sr-only"> receipt for order {o.order_reference}</span>
+                                <span className="sr-only">
+                                  {" "}
+                                  receipt for order {o.order_reference}
+                                </span>
                               </Button>
                             </TD>
                           </TR>
@@ -1041,7 +1177,10 @@ export default function Screen() {
                                   style={{ border: `2px solid ${INK}`, borderRadius: R }}
                                 >
                                   <div className="md:col-span-7">
-                                    <h3 className="text-[11px] uppercase tracking-[0.16em] font-bold" style={{ color: MUTED }}>
+                                    <h3
+                                      className="text-[11px] uppercase tracking-[0.16em] font-bold"
+                                      style={{ color: MUTED }}
+                                    >
                                       Receipt · {o.order_reference}
                                     </h3>
                                     <div className="mt-3">
@@ -1053,24 +1192,42 @@ export default function Screen() {
                                         />
                                       ))}
                                     </div>
-                                    <div className="my-3" style={{ borderTop: `1px solid ${HAIR}` }} />
+                                    <div
+                                      className="my-3"
+                                      style={{ borderTop: `1px solid ${HAIR}` }}
+                                    />
                                     <Leader label="Subtotal" value={money(o.subtotal_cents)} />
                                     <Leader
                                       label={o.shipping_option}
-                                      value={o.shipping_cents === 0 ? "Free" : money(o.shipping_cents)}
+                                      value={
+                                        o.shipping_cents === 0 ? "Free" : money(o.shipping_cents)
+                                      }
                                     />
                                     <Leader label="VAT at 21%" value={money(o.tax_cents)} />
-                                    <div className="my-2" style={{ borderTop: `2px solid ${INK}` }} />
-                                    <Leader label="Total paid (EUR)" value={money(o.total_cents)} strong />
+                                    <div
+                                      className="my-2"
+                                      style={{ borderTop: `2px solid ${INK}` }}
+                                    />
+                                    <Leader
+                                      label="Total paid (EUR)"
+                                      value={money(o.total_cents)}
+                                      strong
+                                    />
                                   </div>
 
                                   <div className="md:col-span-5">
-                                    <h3 className="text-[11px] uppercase tracking-[0.16em] font-bold" style={{ color: MUTED }}>
+                                    <h3
+                                      className="text-[11px] uppercase tracking-[0.16em] font-bold"
+                                      style={{ color: MUTED }}
+                                    >
                                       Delivery & payment
                                     </h3>
                                     <dl className="mt-3 space-y-3 text-[13px]">
                                       <div>
-                                        <dt className="text-[11px] uppercase tracking-[0.12em]" style={{ color: MUTED }}>
+                                        <dt
+                                          className="text-[11px] uppercase tracking-[0.12em]"
+                                          style={{ color: MUTED }}
+                                        >
                                           Shipping to
                                         </dt>
                                         <dd className="mt-0.5 leading-relaxed">
@@ -1080,21 +1237,33 @@ export default function Screen() {
                                         </dd>
                                       </div>
                                       <div>
-                                        <dt className="text-[11px] uppercase tracking-[0.12em]" style={{ color: MUTED }}>
+                                        <dt
+                                          className="text-[11px] uppercase tracking-[0.12em]"
+                                          style={{ color: MUTED }}
+                                        >
                                           Contact email
                                         </dt>
                                         <dd className="mt-0.5">{o.contact_email}</dd>
                                       </div>
                                       <div>
-                                        <dt className="text-[11px] uppercase tracking-[0.12em]" style={{ color: MUTED }}>
+                                        <dt
+                                          className="text-[11px] uppercase tracking-[0.12em]"
+                                          style={{ color: MUTED }}
+                                        >
                                           Payment
                                         </dt>
-                                        <dd className="mt-0.5" style={{ fontVariantNumeric: "tabular-nums" }}>
+                                        <dd
+                                          className="mt-0.5"
+                                          style={{ fontVariantNumeric: "tabular-nums" }}
+                                        >
                                           {o.card} · {o.stripe_payment_intent}
                                         </dd>
                                       </div>
                                       <div>
-                                        <dt className="text-[11px] uppercase tracking-[0.12em]" style={{ color: MUTED }}>
+                                        <dt
+                                          className="text-[11px] uppercase tracking-[0.12em]"
+                                          style={{ color: MUTED }}
+                                        >
                                           Progress
                                         </dt>
                                         <dd className="mt-1 space-y-1">
@@ -1108,7 +1277,10 @@ export default function Screen() {
                                               Shipped {longDate(o.shipped_at)}
                                             </p>
                                           ) : (
-                                            <p className="flex items-center gap-1.5" style={{ color: ACCENT }}>
+                                            <p
+                                              className="flex items-center gap-1.5"
+                                              style={{ color: ACCENT }}
+                                            >
                                               <Clock className="w-3.5 h-3.5" aria-hidden="true" />
                                               Awaiting shipment from Utrecht
                                             </p>
@@ -1131,7 +1303,10 @@ export default function Screen() {
           </div>
 
           {visible.length > 0 && (
-            <p className="mt-2 text-[12px]" style={{ color: MUTED, fontVariantNumeric: "tabular-nums" }}>
+            <p
+              className="mt-2 text-[12px]"
+              style={{ color: MUTED, fontVariantNumeric: "tabular-nums" }}
+            >
               Showing {visible.length} of {orders.length} orders · all amounts in EUR, VAT included
             </p>
           )}
@@ -1139,7 +1314,10 @@ export default function Screen() {
 
         <div className="mt-12" style={{ borderTop: `2px solid ${INK}` }} />
 
-        <section className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8" aria-labelledby="data-heading">
+        <section
+          className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8"
+          aria-labelledby="data-heading"
+        >
           <div className="lg:col-span-7">
             <h2
               id="data-heading"
@@ -1167,13 +1345,16 @@ export default function Screen() {
 
           <div className="lg:col-span-5">
             <div className="p-5" style={{ border: `2px solid ${ACCENT}`, borderRadius: R }}>
-              <h3 className="text-[16px] font-bold tracking-[-0.01em]" style={{ fontFamily: brand.fontHeading, color: INK }}>
+              <h3
+                className="text-[16px] font-bold tracking-[-0.01em]"
+                style={{ fontFamily: brand.fontHeading, color: INK }}
+              >
                 Delete this account
               </h3>
               <p className="mt-2 text-[13px] leading-relaxed" style={{ color: INK }}>
-                Your sign-in and personal details are removed straight away and you'll be signed out. The
-                order records themselves are kept for seven years as Dutch tax law requires, with your name
-                and address stripped out. This can't be undone.
+                Your sign-in and personal details are removed straight away and you'll be signed
+                out. The order records themselves are kept for seven years as Dutch tax law
+                requires, with your name and address stripped out. This can't be undone.
               </p>
 
               {!deletePanel ? (
