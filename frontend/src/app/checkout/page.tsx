@@ -14,7 +14,6 @@ import { Icons } from "@/lib/icons";
 import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const {
   Button,
   Card,
@@ -31,7 +30,7 @@ const {
   TD,
   Empty,
 } = UI;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const { Check, X, Clock, Trash, ArrowLeft, AlertCircle } = Icons;
 
 const TAX_RATE_PERCENT = 20;

@@ -14,7 +14,6 @@ import { Icons } from "@/lib/icons";
 import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const {
   Button,
   Card,
@@ -33,7 +32,7 @@ const {
   Stat,
   Empty,
 } = UI;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const {
   Search,
   Check,

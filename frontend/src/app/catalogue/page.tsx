@@ -14,9 +14,8 @@ import { Icons } from "@/lib/icons";
 import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Card, Select, Switch } = UI;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const { Search } = Icons;
 
 const PRODUCT = "small shop";

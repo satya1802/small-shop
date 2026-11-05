@@ -14,7 +14,6 @@ import { Icons } from "@/lib/icons";
 import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const {
   Button,
   Card,
@@ -32,7 +31,7 @@ const {
   TD,
   Empty,
 } = UI;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const { Check, X, ChevronRight, Clock, Trash, Filter, ArrowLeft, AlertCircle, CheckCircle } = Icons;
 
 const CURRENCY_SYMBOL = "£";

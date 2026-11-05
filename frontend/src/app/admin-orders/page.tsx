@@ -6,7 +6,6 @@
 // honours @ts-nocheck when it is the first statement-level token in the file,
 // and only leading comments (not other statements) may come before a directive.
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 
 import * as UI from "@/lib/ui";
@@ -14,9 +13,8 @@ import { Icons } from "@/lib/icons";
 import { brand } from "@/lib/brand";
 import { useNavigate } from "@/lib/navigate";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { Button, Input, Label, Select, Badge, Table, THead, TBody, TR, TH, TD, Tabs, Empty } = UI;
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const { Search, Check, X, ChevronRight, Package, Clock, AlertCircle, CheckCircle } = Icons;
 
 const TAX_RATE_PERCENT = 20;
