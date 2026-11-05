@@ -1,5 +1,5 @@
 import request from "supertest";
-import { beforeAll, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { createApp } from "../../src/app.js";
 import { asList, customerHeaders, field, ownerHeaders } from "../support/auth.js";
@@ -14,17 +14,14 @@ function uniqueName(label: string): string {
 describe("admin product CRUD (AC-024, AC-025, AC-026)", () => {
   it("[AC-024] a product the owner creates (published) is published to GET /products", async () => {
     const name = uniqueName("Owner Created Product");
-    const create = await request(app)
-      .post("/admin/products")
-      .set(owner)
-      .send({
-        name,
-        description: "A product created by the owner",
-        price: 1999,
-        imageUrl: "https://example.com/image.jpg",
-        stock: 5,
-        published: true,
-      });
+    const create = await request(app).post("/admin/products").set(owner).send({
+      name,
+      description: "A product created by the owner",
+      price: 1999,
+      imageUrl: "https://example.com/image.jpg",
+      stock: 5,
+      published: true,
+    });
 
     expect([200, 201]).toContain(create.status);
     const id = field<string>(create.body, "id");
@@ -106,17 +103,23 @@ describe("admin product CRUD (AC-024, AC-025, AC-026)", () => {
 
 describe("admin product routes require owner sign-in (NFR-005)", () => {
   it("[NFR-005] POST /admin/products returns 401 without a token", async () => {
-    const response = await request(app).post("/admin/products").send({ name: "x", price: 1, stock: 1 });
+    const response = await request(app)
+      .post("/admin/products")
+      .send({ name: "x", price: 1, stock: 1 });
     expect(response.status).toBe(401);
   });
 
   it("[NFR-005] PATCH /admin/products/:id returns 401 without a token", async () => {
-    const response = await request(app).patch("/admin/products/00000000-0000-0000-0000-000000000000").send({});
+    const response = await request(app)
+      .patch("/admin/products/00000000-0000-0000-0000-000000000000")
+      .send({});
     expect(response.status).toBe(401);
   });
 
   it("[NFR-005] DELETE /admin/products/:id returns 401 without a token", async () => {
-    const response = await request(app).delete("/admin/products/00000000-0000-0000-0000-000000000000");
+    const response = await request(app).delete(
+      "/admin/products/00000000-0000-0000-0000-000000000000",
+    );
     expect(response.status).toBe(401);
   });
 

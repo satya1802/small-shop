@@ -1,9 +1,10 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi, beforeEach } from "vitest";
+import type { Mock } from "vitest";
 
 import Page from "./page";
-import { apiFetch } from "@/lib/api";
+import { apiFetch as apiFetchImport } from "@/lib/api";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: () => {} }),
@@ -13,6 +14,8 @@ vi.mock("next/navigation", () => ({
 vi.mock("@/lib/api", () => ({
   apiFetch: vi.fn(),
 }));
+
+const apiFetch = apiFetchImport as unknown as Mock;
 
 const PRODUCT = {
   id: "p1",

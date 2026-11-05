@@ -34,7 +34,9 @@ export const requireOwner: RequestHandler = (req: Request, res: Response, next: 
     return;
   }
 
-  const secret = process.env.JWT_SECRET_KEY;
+  // JWT_SECRET_KEY is the documented signing key; JWT_SECRET is accepted too so an
+  // owner token signed by either name still verifies.
+  const secret = process.env.JWT_SECRET_KEY ?? process.env.JWT_SECRET;
   if (!secret) {
     res.status(401).json({ error: "unauthorized", detail: "No signing key configured." });
     return;
@@ -48,7 +50,11 @@ export const requireOwner: RequestHandler = (req: Request, res: Response, next: 
     return;
   }
 
-  if (typeof decoded !== "object" || decoded === null || (decoded as OwnerClaims).role !== "owner") {
+  if (
+    typeof decoded !== "object" ||
+    decoded === null ||
+    (decoded as OwnerClaims).role !== "owner"
+  ) {
     res.status(403).json({ error: "forbidden", detail: "Owner role required." });
     return;
   }

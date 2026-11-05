@@ -11,6 +11,11 @@ import { z } from "zod";
 
 import { requireOwner } from "../middleware/auth.js";
 import { createProduct, deleteProduct, updateProduct } from "../services/products.js";
+import {
+  createShippingOption,
+  updateShippingOption,
+} from "../services/shipping.js";
+import { setTaxSettings } from "../services/settings.js";
 import { notImplemented } from "../stubs.js";
 
 export const router = Router();
@@ -62,19 +67,54 @@ router.delete("/admin/products/:id", requireOwner, async (req, res) => {
   res.status(204).send();
 });
 
+const shippingOptionCreateSchema = z.object({
+  name: z.string().trim().min(1, "Name is required."),
+  cost: z.number().int().nonnegative(),
+  active: z.boolean().optional(),
+});
+
+const shippingOptionUpdateSchema = shippingOptionCreateSchema.partial();
+
+const taxSettingsSchema = z.object({
+  taxRatePercent: z.number().min(0).max(100),
+  currency: z.string().trim().min(1, "Currency is required."),
+});
+
 /** Owner creates a flat-rate shipping option */
-router.post("/admin/shipping-options", (_req, res) => {
-  res.json(notImplemented("POST /admin/shipping-options"));
+router.post("/admin/shipping-options", requireOwner, async (req, res) => {
+  const parsed = shippingOptionCreateSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
+    return;
+  }
+  const option = await createShippingOption(parsed.data);
+  res.status(201).json(option);
 });
 
 /** Owner edits or deactivates a shipping option */
-router.patch("/admin/shipping-options/:id", (_req, res) => {
-  res.json(notImplemented("PATCH /admin/shipping-options/:id"));
+router.patch("/admin/shipping-options/:id", requireOwner, async (req, res) => {
+  const parsed = shippingOptionUpdateSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
+    return;
+  }
+  const option = await updateShippingOption(String(req.params.id), parsed.data);
+  if (!option) {
+    res.status(404).json({ error: "not_found", detail: "No shipping option with that id." });
+    return;
+  }
+  res.json(option);
 });
 
 /** Owner sets the single tax/VAT rate and currency */
-router.put("/admin/settings/tax", (_req, res) => {
-  res.json(notImplemented("PUT /admin/settings/tax"));
+router.put("/admin/settings/tax", requireOwner, async (req, res) => {
+  const parsed = taxSettingsSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: "invalid_request", detail: parsed.error.flatten() });
+    return;
+  }
+  const settings = await setTaxSettings(parsed.data);
+  res.json(settings);
 });
 
 /** Owner dashboard: recent orders and those awaiting shipment */

@@ -6,6 +6,8 @@
  * migrations yet (see the note there), so a column added here lands at the next
  * connection and nothing is ever altered or dropped automatically.
  */
+import { randomUUID } from "node:crypto";
+
 import {
   boolean,
   integer,
@@ -19,14 +21,25 @@ import {
 
 /** Catalogue items a shopper can browse and the owner manages. */
 export const products = pgTable("products", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  // `createStatements()` in db.ts (read-only here) builds `CREATE TABLE` from this
+  // schema without emitting a SQL-level `DEFAULT` clause, so `.defaultRandom()` -- which
+  // relies on the column's SQL default -- inserts NULL and fails the not-null primary
+  // key. Generating the id in application code with `$defaultFn` sidesteps that: Drizzle
+  // supplies the value itself instead of asking Postgres for one.
+  id: uuid("id")
+    .primaryKey()
+    .$defaultFn(() => randomUUID()),
   name: text("name").notNull(),
   description: text("description"),
   priceCents: integer("price_cents").notNull(),
   imageUrl: text("image_url"),
   stockQuantity: integer("stock_quantity").notNull(),
   published: boolean("published").notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }).notNull().defaultNow(),
+  // Same reasoning as the id column above: no SQL-level DEFAULT exists on this table,
+  // so `.defaultNow()` alone would insert NULL.
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    .notNull()
+    .$defaultFn(() => new Date().toISOString()),
 });
 
 /** Optional shopper accounts (email + password), used to view past orders. */

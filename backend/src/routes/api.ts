@@ -9,6 +9,8 @@
 import { Router } from "express";
 
 import { getPublishedProduct, listPublishedProducts } from "../services/products.js";
+import { listActiveShippingOptions } from "../services/shipping.js";
+import { getTaxSettings } from "../services/settings.js";
 import { notImplemented } from "../stubs.js";
 
 export const router = Router();
@@ -55,13 +57,19 @@ router.get("/carts/:id", (_req, res) => {
 });
 
 /** List active flat-rate shipping options for checkout */
-router.get("/shipping-options", (_req, res) => {
-  res.json(notImplemented("GET /shipping-options"));
+router.get("/shipping-options", async (_req, res) => {
+  const options = await listActiveShippingOptions();
+  res.json(options);
 });
 
 /** Get single configured tax rate and currency */
-router.get("/settings/tax", (_req, res) => {
-  res.json(notImplemented("GET /settings/tax"));
+router.get("/settings/tax", async (_req, res) => {
+  const settings = await getTaxSettings();
+  if (!settings) {
+    res.json({ taxRatePercent: 0, currency: "USD" });
+    return;
+  }
+  res.json(settings);
 });
 
 /** Validate cart, compute tax+shipping, create Stripe Checkout session */
