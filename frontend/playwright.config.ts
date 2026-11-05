@@ -32,22 +32,21 @@ export default defineConfig({
   webServer: runAgainstDeployment
     ? undefined
     : [
-      {
-        // The generated API, started from backend/ with its packages installed before
-        // the run. With no DATABASE_URL it falls back to a local database (SQLite for a
-        // Python backend, an in-memory PostgreSQL for a Node one), so it runs end to end
-        // with no database server to stand up.
-        command:
-          "cd ../backend && HOST=127.0.0.1 PORT=8000 node_modules/.bin/tsx src/main.ts",
-        url: "http://127.0.0.1:8000/health",
-        reuseExistingServer: !process.env.CI,
-        timeout: 180_000,
-      },
-      {
-        command: "npm run build && npm run preview",
-        url: "http://127.0.0.1:4173",
-        reuseExistingServer: !process.env.CI,
-        timeout: 180_000,
-      },
-    ],
+        {
+          // The generated API, started from backend/ with its packages installed before
+          // the run. With no DATABASE_URL it falls back to a local database (SQLite for a
+          // Python backend, an in-memory PostgreSQL for a Node one), so it runs end to end
+          // with no database server to stand up.
+          command: "cd ../backend && HOST=127.0.0.1 PORT=8000 node_modules/.bin/tsx src/main.ts",
+          url: "http://127.0.0.1:8000/health",
+          reuseExistingServer: !process.env.CI,
+          timeout: 180_000,
+        },
+        {
+          command: "npm run build && npm run preview",
+          url: "http://127.0.0.1:4173",
+          reuseExistingServer: !process.env.CI,
+          timeout: 180_000,
+        },
+      ],
 });

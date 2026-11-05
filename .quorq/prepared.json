@@ -1,0 +1,54 @@
+{
+  "key": {
+    "app_design_id": "5ee47d36-a800-4db9-91e4-a6ddc6131809",
+    "app_design_version": 1,
+    "architecture_document_id": "4f84afa9-0a8b-48f7-961f-4742235738d3",
+    "architecture_version": 1
+  },
+  "outcome": "prepared",
+  "packages": [
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "stripe",
+      "status": "skipped",
+      "version": ">=17.0.0"
+    },
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "@stripe/stripe-js",
+      "status": "skipped",
+      "version": ">=4.0.0"
+    },
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "ioredis",
+      "status": "skipped",
+      "version": ">=5.4.0"
+    },
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "jsonwebtoken",
+      "status": "skipped",
+      "version": ">=9.0.0"
+    },
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "bcryptjs",
+      "status": "skipped",
+      "version": ">=2.4.3"
+    },
+    {
+      "ecosystem": "npm",
+      "error": "already provided by the scaffold",
+      "name": "zod",
+      "status": "skipped",
+      "version": ">=3.23.0"
+    }
+  ],
+  "prepared_by_run": "79f1e1f6-2c0d-493e-8637-c8a13bb91eff"
+}

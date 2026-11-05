@@ -1,8 +1,11 @@
+// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 "use client";
 // Generated screens hold state and handle events, which a server component
 // cannot do. Next.js renders on the server unless a module says otherwise.
+// The pragma above must precede the "use client" directive: TypeScript only
+// honours @ts-nocheck when it is the first statement-level token in the file,
+// and only leading comments (not other statements) may come before a directive.
 
-// @ts-nocheck -- generated from the approved design under its JS runtime contract; not hand-written TypeScript.
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 
@@ -42,8 +45,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW8xF2eZvKYlo2C1nUqA4bR",
     created_at: "2026-11-04T09:14:00",
     items: [
-      { id: "oi_1", product_id: "p_kettle", product_name: "Fellow Stagg EKG Electric Kettle", unit_price_cents: 14900, quantity: 1 },
-      { id: "oi_2", product_id: "p_guji", product_name: "Ethiopia Guji Washed — 250g", unit_price_cents: 1250, quantity: 2 },
+      {
+        id: "oi_1",
+        product_id: "p_kettle",
+        product_name: "Fellow Stagg EKG Electric Kettle",
+        unit_price_cents: 14900,
+        quantity: 1,
+      },
+      {
+        id: "oi_2",
+        product_id: "p_guji",
+        product_name: "Ethiopia Guji Washed — 250g",
+        unit_price_cents: 1250,
+        quantity: 2,
+      },
     ],
   },
   {
@@ -58,8 +73,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW7tB2eZvKYlo2C0jLmP9xK",
     created_at: "2026-11-04T08:02:00",
     items: [
-      { id: "oi_3", product_id: "p_v60", product_name: "Hario V60 02 Ceramic Dripper", unit_price_cents: 2400, quantity: 1 },
-      { id: "oi_4", product_id: "p_filters", product_name: "V60 02 Paper Filters — 100 pack", unit_price_cents: 650, quantity: 3 },
+      {
+        id: "oi_3",
+        product_id: "p_v60",
+        product_name: "Hario V60 02 Ceramic Dripper",
+        unit_price_cents: 2400,
+        quantity: 1,
+      },
+      {
+        id: "oi_4",
+        product_id: "p_filters",
+        product_name: "V60 02 Paper Filters — 100 pack",
+        unit_price_cents: 650,
+        quantity: 3,
+      },
     ],
   },
   {
@@ -74,7 +101,13 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW6pQ2eZvKYlo2C7vDnR2wE",
     created_at: "2026-11-03T17:48:00",
     items: [
-      { id: "oi_5", product_id: "p_c40", product_name: "Comandante C40 MK4 Hand Grinder", unit_price_cents: 24500, quantity: 1 },
+      {
+        id: "oi_5",
+        product_id: "p_c40",
+        product_name: "Comandante C40 MK4 Hand Grinder",
+        unit_price_cents: 24500,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -90,8 +123,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW5mN2eZvKYlo2C4sTgH8yU",
     created_at: "2026-11-03T14:26:00",
     items: [
-      { id: "oi_6", product_id: "p_pearl", product_name: "Acaia Pearl S Brewing Scale", unit_price_cents: 19500, quantity: 1 },
-      { id: "oi_7", product_id: "p_nyeri", product_name: "Kenya Nyeri AA — 250g", unit_price_cents: 1450, quantity: 1 },
+      {
+        id: "oi_6",
+        product_id: "p_pearl",
+        product_name: "Acaia Pearl S Brewing Scale",
+        unit_price_cents: 19500,
+        quantity: 1,
+      },
+      {
+        id: "oi_7",
+        product_id: "p_nyeri",
+        product_name: "Kenya Nyeri AA — 250g",
+        unit_price_cents: 1450,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -106,8 +151,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW4kL2eZvKYlo2C9bFcN3qT",
     created_at: "2026-11-03T11:05:00",
     items: [
-      { id: "oi_8", product_id: "p_guji", product_name: "Ethiopia Guji Washed — 250g", unit_price_cents: 1250, quantity: 4 },
-      { id: "oi_9", product_id: "p_decaf", product_name: "Decaf Colombia Huila — 250g", unit_price_cents: 1150, quantity: 1 },
+      {
+        id: "oi_8",
+        product_id: "p_guji",
+        product_name: "Ethiopia Guji Washed — 250g",
+        unit_price_cents: 1250,
+        quantity: 4,
+      },
+      {
+        id: "oi_9",
+        product_id: "p_decaf",
+        product_name: "Decaf Colombia Huila — 250g",
+        unit_price_cents: 1150,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -123,7 +180,13 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW3jH2eZvKYlo2C6xRpV5mD",
     created_at: "2026-11-02T19:41:00",
     items: [
-      { id: "oi_10", product_id: "p_atmos", product_name: "Fellow Atmos Vacuum Canister 1.2L", unit_price_cents: 3400, quantity: 1 },
+      {
+        id: "oi_10",
+        product_id: "p_atmos",
+        product_name: "Fellow Atmos Vacuum Canister 1.2L",
+        unit_price_cents: 3400,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -139,7 +202,13 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW2gF2eZvKYlo2C1nKdW7sA",
     created_at: "2026-11-02T10:12:00",
     items: [
-      { id: "oi_11", product_id: "p_c40", product_name: "Comandante C40 MK4 Hand Grinder", unit_price_cents: 24500, quantity: 1 },
+      {
+        id: "oi_11",
+        product_id: "p_c40",
+        product_name: "Comandante C40 MK4 Hand Grinder",
+        unit_price_cents: 24500,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -155,8 +224,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW1dC2eZvKYlo2C3hGmZ9pQ",
     created_at: "2026-11-02T09:03:00",
     items: [
-      { id: "oi_12", product_id: "p_kalita", product_name: "Kalita Wave 185 Stainless Dripper", unit_price_cents: 2900, quantity: 1 },
-      { id: "oi_13", product_id: "p_wavefilters", product_name: "Wave 185 Filters — 100 pack", unit_price_cents: 900, quantity: 2 },
+      {
+        id: "oi_12",
+        product_id: "p_kalita",
+        product_name: "Kalita Wave 185 Stainless Dripper",
+        unit_price_cents: 2900,
+        quantity: 1,
+      },
+      {
+        id: "oi_13",
+        product_id: "p_wavefilters",
+        product_name: "Wave 185 Filters — 100 pack",
+        unit_price_cents: 900,
+        quantity: 2,
+      },
     ],
   },
   {
@@ -171,8 +252,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QW0aZ2eZvKYlo2C8tWqL4nR",
     created_at: "2026-11-02T08:40:00",
     items: [
-      { id: "oi_14", product_id: "p_guji", product_name: "Ethiopia Guji Washed — 250g", unit_price_cents: 1250, quantity: 1 },
-      { id: "oi_15", product_id: "p_timemore", product_name: "Timemore Black Mirror Basic 2 Scale", unit_price_cents: 5900, quantity: 1 },
+      {
+        id: "oi_14",
+        product_id: "p_guji",
+        product_name: "Ethiopia Guji Washed — 250g",
+        unit_price_cents: 1250,
+        quantity: 1,
+      },
+      {
+        id: "oi_15",
+        product_id: "p_timemore",
+        product_name: "Timemore Black Mirror Basic 2 Scale",
+        unit_price_cents: 5900,
+        quantity: 1,
+      },
     ],
   },
   {
@@ -188,7 +281,13 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QVzXy2eZvKYlo2C5kJbT6mF",
     created_at: "2026-10-31T18:27:00",
     items: [
-      { id: "oi_16", product_id: "p_nyeri", product_name: "Kenya Nyeri AA — 250g", unit_price_cents: 1450, quantity: 3 },
+      {
+        id: "oi_16",
+        product_id: "p_nyeri",
+        product_name: "Kenya Nyeri AA — 250g",
+        unit_price_cents: 1450,
+        quantity: 3,
+      },
     ],
   },
   {
@@ -204,8 +303,20 @@ const RAW_ORDERS = [
     stripe_payment_intent: "pi_3QVyWu2eZvKYlo2C2dNrX1gH",
     created_at: "2026-10-30T13:55:00",
     items: [
-      { id: "oi_17", product_id: "p_v60", product_name: "Hario V60 02 Ceramic Dripper", unit_price_cents: 2400, quantity: 2 },
-      { id: "oi_18", product_id: "p_atmos", product_name: "Fellow Atmos Vacuum Canister 1.2L", unit_price_cents: 3400, quantity: 1 },
+      {
+        id: "oi_17",
+        product_id: "p_v60",
+        product_name: "Hario V60 02 Ceramic Dripper",
+        unit_price_cents: 2400,
+        quantity: 2,
+      },
+      {
+        id: "oi_18",
+        product_id: "p_atmos",
+        product_name: "Fellow Atmos Vacuum Canister 1.2L",
+        unit_price_cents: 3400,
+        quantity: 1,
+      },
     ],
   },
 ];
@@ -313,7 +424,8 @@ export default function Screen() {
       all: orders.length,
       awaiting: orders.filter((o) => o.status === "placed").length,
       shipped: orders.filter((o) => o.status === "shipped").length,
-      exceptions: orders.filter((o) => o.status === "awaiting_payment" || o.status === "cancelled").length,
+      exceptions: orders.filter((o) => o.status === "awaiting_payment" || o.status === "cancelled")
+        .length,
     };
   }, [orders]);
 
@@ -331,7 +443,8 @@ export default function Screen() {
     let list = orders.filter((o) => {
       if (tab === "awaiting" && o.status !== "placed") return false;
       if (tab === "shipped" && o.status !== "shipped") return false;
-      if (tab === "exceptions" && o.status !== "awaiting_payment" && o.status !== "cancelled") return false;
+      if (tab === "exceptions" && o.status !== "awaiting_payment" && o.status !== "cancelled")
+        return false;
       if (!q) return true;
       return (
         o.order_reference.toLowerCase().includes(q) ||
@@ -366,7 +479,9 @@ export default function Screen() {
     later(() => {
       const ref = selected.order_reference;
       setOrders((prev) =>
-        prev.map((o) => (o.id === selected.id ? { ...o, status: "shipped", shipped_at: NOW_STAMP } : o))
+        prev.map((o) =>
+          o.id === selected.id ? { ...o, status: "shipped", shipped_at: NOW_STAMP } : o,
+        ),
       );
       setShipBusy(false);
       setConfirming(false);
@@ -384,10 +499,18 @@ export default function Screen() {
       (size === "lg" ? "px-2.5 py-1 text-[11px]" : "px-2 py-0.5 text-[10px]");
     let style = { borderColor: ink, color: ink, backgroundColor: "transparent" };
     if (meta.tone === "solid") style = { borderColor: ink, backgroundColor: ink, color: surface };
-    if (meta.tone === "accent") style = { borderColor: accent, color: accent, backgroundColor: "transparent" };
-    if (meta.tone === "muted") style = { borderColor: hair, color: neutral, backgroundColor: "transparent" };
+    if (meta.tone === "accent")
+      style = { borderColor: accent, color: accent, backgroundColor: "transparent" };
+    if (meta.tone === "muted")
+      style = { borderColor: hair, color: neutral, backgroundColor: "transparent" };
     const Glyph =
-      status === "shipped" ? Check : status === "awaiting_payment" ? AlertCircle : status === "cancelled" ? X : Clock;
+      status === "shipped"
+        ? Check
+        : status === "awaiting_payment"
+          ? AlertCircle
+          : status === "cancelled"
+            ? X
+            : Clock;
     return (
       <Badge className={base} style={style}>
         <Glyph className={size === "lg" ? "h-3.5 w-3.5" : "h-3 w-3"} aria-hidden="true" />
@@ -397,10 +520,18 @@ export default function Screen() {
   }
 
   const metrics = [
-    { label: "Awaiting shipment", value: String(counts.awaiting), hint: oldestUnshipped ? "Oldest " + oldestUnshipped.order_reference : "Desk clear" },
+    {
+      label: "Awaiting shipment",
+      value: String(counts.awaiting),
+      hint: oldestUnshipped ? "Oldest " + oldestUnshipped.order_reference : "Desk clear",
+    },
     { label: "Shipped this week", value: String(counts.shipped), hint: "Manual dispatch" },
     { label: "Orders, 7 days", value: String(counts.all), hint: "29 Oct – 04 Nov" },
-    { label: "Taken, 7 days", value: priceOf(weekRevenue), hint: "Incl. VAT " + TAX_RATE_PERCENT + "%" },
+    {
+      label: "Taken, 7 days",
+      value: priceOf(weekRevenue),
+      hint: "Incl. VAT " + TAX_RATE_PERCENT + "%",
+    },
   ];
 
   return (
@@ -455,14 +586,17 @@ export default function Screen() {
             {loading
               ? "Syncing with Stripe…"
               : syncError
-              ? "Showing orders as of " + SYNC_TIMES[syncIndex] + " — may be out of date"
-              : "Synced " + SYNC_TIMES[syncIndex] + " · Stripe webhooks live"}
+                ? "Showing orders as of " + SYNC_TIMES[syncIndex] + " — may be out of date"
+                : "Synced " + SYNC_TIMES[syncIndex] + " · Stripe webhooks live"}
           </p>
           <Button
             type="button"
             onClick={refresh}
             disabled={loading}
-            className={"rounded-none border-2 px-3 py-2 text-[12px] font-bold uppercase tracking-[0.12em] " + (loading ? "opacity-60" : "")}
+            className={
+              "rounded-none border-2 px-3 py-2 text-[12px] font-bold uppercase tracking-[0.12em] " +
+              (loading ? "opacity-60" : "")
+            }
             style={{ borderColor: ink, backgroundColor: "transparent", color: ink }}
           >
             {loading ? "Refreshing…" : "Refresh"}
@@ -501,7 +635,10 @@ export default function Screen() {
             >
               {m.value}
             </p>
-            <p className="mt-2 text-[12px]" style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}>
+            <p
+              className="mt-2 text-[12px]"
+              style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}
+            >
               {m.hint}
             </p>
           </div>
@@ -516,7 +653,10 @@ export default function Screen() {
           style={{ borderColor: ink, backgroundColor: faint }}
         >
           <CheckCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-          <p className="flex-1 text-[13px] font-medium" style={{ fontVariantNumeric: "tabular-nums" }}>
+          <p
+            className="flex-1 text-[13px] font-medium"
+            style={{ fontVariantNumeric: "tabular-nums" }}
+          >
             {notice}
           </p>
           <button
@@ -534,12 +674,22 @@ export default function Screen() {
       <div className="mt-6 grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
         {/* Ledger */}
         <section className="border-2" style={{ borderColor: ink }} aria-labelledby="ledger-heading">
-          <div className="flex flex-col gap-4 px-4 py-4" style={{ borderBottom: "2px solid " + ink }}>
+          <div
+            className="flex flex-col gap-4 px-4 py-4"
+            style={{ borderBottom: "2px solid " + ink }}
+          >
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <h2 id="ledger-heading" className="text-[18px] font-bold tracking-[-0.01em]" style={{ fontFamily: brand.fontHeading }}>
+              <h2
+                id="ledger-heading"
+                className="text-[18px] font-bold tracking-[-0.01em]"
+                style={{ fontFamily: brand.fontHeading }}
+              >
                 Order ledger
               </h2>
-              <p className="text-[12px]" style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}>
+              <p
+                className="text-[12px]"
+                style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}
+              >
                 {visible.length} of {orders.length} shown
               </p>
             </div>
@@ -597,13 +747,23 @@ export default function Screen() {
           </div>
 
           {syncError && (
-            <div className="ao-row flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-start" style={{ borderBottom: "2px solid " + ink }}>
-              <AlertCircle className="h-5 w-5 shrink-0" aria-hidden="true" style={{ color: accent }} />
+            <div
+              className="ao-row flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-start"
+              style={{ borderBottom: "2px solid " + ink }}
+            >
+              <AlertCircle
+                className="h-5 w-5 shrink-0"
+                aria-hidden="true"
+                style={{ color: accent }}
+              />
               <div className="flex-1">
                 <h3 className="text-[14px] font-bold">Couldn’t reach the order service</h3>
-                <p className="mt-1 max-w-[60ch] text-[13px] leading-[1.5]" style={{ color: neutral }}>
-                  The sync at {SYNC_TIMES[syncIndex]} timed out, so anything placed since then is missing from this list. Your
-                  filter and search are still set — try again.
+                <p
+                  className="mt-1 max-w-[60ch] text-[13px] leading-[1.5]"
+                  style={{ color: neutral }}
+                >
+                  The sync at {SYNC_TIMES[syncIndex]} timed out, so anything placed since then is
+                  missing from this list. Your filter and search are still set — try again.
                 </p>
               </div>
               <Button
@@ -618,25 +778,52 @@ export default function Screen() {
           )}
 
           <div className="overflow-x-auto">
-            <Table className="w-full border-collapse text-[13px]" style={{ fontVariantNumeric: "tabular-nums" }}>
+            <Table
+              className="w-full border-collapse text-[13px]"
+              style={{ fontVariantNumeric: "tabular-nums" }}
+            >
               <THead>
                 <TR style={{ borderBottom: "2px solid " + ink }}>
-                  <TH scope="col" className={cellPad + " text-left " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-left " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Reference
                   </TH>
-                  <TH scope="col" className={cellPad + " text-left " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-left " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Placed
                   </TH>
-                  <TH scope="col" className={cellPad + " text-left " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-left " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Customer
                   </TH>
-                  <TH scope="col" className={cellPad + " text-right " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-right " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Items
                   </TH>
-                  <TH scope="col" className={cellPad + " text-left " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-left " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Status
                   </TH>
-                  <TH scope="col" className={cellPad + " text-right " + labelCls} style={{ color: neutral }}>
+                  <TH
+                    scope="col"
+                    className={cellPad + " text-right " + labelCls}
+                    style={{ color: neutral }}
+                  >
                     Total
                   </TH>
                 </TR>
@@ -682,13 +869,21 @@ export default function Screen() {
                       >
                         <TD
                           className={cellPad}
-                          style={{ boxShadow: isException ? "inset 3px 0 0 " + accent : isSelected ? "inset 3px 0 0 " + ink : "none" }}
+                          style={{
+                            boxShadow: isException
+                              ? "inset 3px 0 0 " + accent
+                              : isSelected
+                                ? "inset 3px 0 0 " + ink
+                                : "none",
+                          }}
                         >
                           <button
                             type="button"
                             onClick={() => openOrder(o.id)}
                             aria-current={isSelected ? "true" : undefined}
-                            aria-label={"Open order " + o.order_reference + ", " + STATUS_META[o.status].label}
+                            aria-label={
+                              "Open order " + o.order_reference + ", " + STATUS_META[o.status].label
+                            }
                             className="rounded-none text-[13px] font-bold tracking-[-0.01em] underline-offset-[3px] hover:underline"
                             style={{ color: ink }}
                           >
@@ -710,7 +905,9 @@ export default function Screen() {
                         <TD className={cellPad}>
                           <StatusTag status={o.status} />
                         </TD>
-                        <TD className={cellPad + " text-right font-bold"}>{priceOf(o.total_cents)}</TD>
+                        <TD className={cellPad + " text-right font-bold"}>
+                          {priceOf(o.total_cents)}
+                        </TD>
                       </TR>
                     );
                   })}
@@ -726,10 +923,10 @@ export default function Screen() {
                   query
                     ? "References look like ORD-7311. You can also search by the shipping name or the contact email on the order."
                     : tab === "awaiting"
-                    ? "Every paid order has been dispatched. New orders land here the moment Stripe confirms payment."
-                    : tab === "exceptions"
-                    ? "No payments are stuck and nothing has been cancelled this week."
-                    : "No orders carry this status yet."
+                      ? "Every paid order has been dispatched. New orders land here the moment Stripe confirms payment."
+                      : tab === "exceptions"
+                        ? "No payments are stuck and nothing has been cancelled this week."
+                        : "No orders carry this status yet."
                 }
                 action={
                   query ? (
@@ -811,7 +1008,10 @@ export default function Screen() {
                 </div>
               </div>
 
-              <dl className="grid grid-cols-2 gap-x-4 gap-y-3 px-4 py-4" style={{ borderBottom: "1px solid " + hair }}>
+              <dl
+                className="grid grid-cols-2 gap-x-4 gap-y-3 px-4 py-4"
+                style={{ borderBottom: "1px solid " + hair }}
+              >
                 <div>
                   <dt className={labelCls} style={{ color: neutral }}>
                     Placed
@@ -824,7 +1024,9 @@ export default function Screen() {
                   <dt className={labelCls} style={{ color: neutral }}>
                     Channel
                   </dt>
-                  <dd className="mt-1 text-[13px]">{selected.customer_id ? "Account " + selected.customer_id : "Guest checkout"}</dd>
+                  <dd className="mt-1 text-[13px]">
+                    {selected.customer_id ? "Account " + selected.customer_id : "Guest checkout"}
+                  </dd>
                 </div>
                 <div className="col-span-2">
                   <dt className={labelCls} style={{ color: neutral }}>
@@ -836,7 +1038,10 @@ export default function Screen() {
                   <dt className={labelCls} style={{ color: neutral }}>
                     Stripe payment intent
                   </dt>
-                  <dd className="mt-1 break-all text-[12px]" style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}>
+                  <dd
+                    className="mt-1 break-all text-[12px]"
+                    style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}
+                  >
                     {selected.stripe_payment_intent}
                   </dd>
                 </div>
@@ -847,12 +1052,18 @@ export default function Screen() {
                   Ship to
                 </h3>
                 <p className="mt-2 text-[14px] font-bold">{selected.shipping_name}</p>
-                <address className="mt-1 whitespace-pre-line text-[13px] not-italic leading-[1.5]" style={{ color: neutral }}>
+                <address
+                  className="mt-1 whitespace-pre-line text-[13px] not-italic leading-[1.5]"
+                  style={{ color: neutral }}
+                >
                   {selected.shipping_address}
                 </address>
                 <p className="mt-3 text-[13px]">
                   <span className="font-bold">
-                    {(SHIPPING_OPTIONS.find((s) => s.id === selected.shipping_option_id) || {}).name}
+                    {
+                      (SHIPPING_OPTIONS.find((s) => s.id === selected.shipping_option_id) || {})
+                        .name
+                    }
                   </span>
                   <span style={{ color: neutral, fontVariantNumeric: "tabular-nums" }}>
                     {" — " + priceOf(selected.shipping_cents) + " flat rate"}
@@ -864,16 +1075,31 @@ export default function Screen() {
                 <h3 className={labelCls + " mb-2"} style={{ color: neutral }}>
                   Items to pick
                 </h3>
-                <Table className="w-full border-collapse text-[13px]" style={{ fontVariantNumeric: "tabular-nums" }}>
+                <Table
+                  className="w-full border-collapse text-[13px]"
+                  style={{ fontVariantNumeric: "tabular-nums" }}
+                >
                   <THead>
                     <TR style={{ borderBottom: "2px solid " + ink }}>
-                      <TH scope="col" className={"py-2 pr-2 text-left " + labelCls} style={{ color: neutral }}>
+                      <TH
+                        scope="col"
+                        className={"py-2 pr-2 text-left " + labelCls}
+                        style={{ color: neutral }}
+                      >
                         Product
                       </TH>
-                      <TH scope="col" className={"py-2 px-2 text-right " + labelCls} style={{ color: neutral }}>
+                      <TH
+                        scope="col"
+                        className={"py-2 px-2 text-right " + labelCls}
+                        style={{ color: neutral }}
+                      >
                         Qty
                       </TH>
-                      <TH scope="col" className={"py-2 pl-2 text-right " + labelCls} style={{ color: neutral }}>
+                      <TH
+                        scope="col"
+                        className={"py-2 pl-2 text-right " + labelCls}
+                        style={{ color: neutral }}
+                      >
                         Line
                       </TH>
                     </TR>
@@ -882,20 +1108,27 @@ export default function Screen() {
                     {selected.items.map((it) => (
                       <TR key={it.id} style={{ borderBottom: "1px solid " + hair }}>
                         <TD className="py-2 pr-2">
-                          <span className="block font-medium leading-[1.35]">{it.product_name}</span>
+                          <span className="block font-medium leading-[1.35]">
+                            {it.product_name}
+                          </span>
                           <span className="block text-[12px]" style={{ color: neutral }}>
                             {priceOf(it.unit_price_cents)} each
                           </span>
                         </TD>
                         <TD className="py-2 px-2 text-right font-bold">{it.quantity}</TD>
-                        <TD className="py-2 pl-2 text-right">{priceOf(it.unit_price_cents * it.quantity)}</TD>
+                        <TD className="py-2 pl-2 text-right">
+                          {priceOf(it.unit_price_cents * it.quantity)}
+                        </TD>
                       </TR>
                     ))}
                   </TBody>
                 </Table>
               </div>
 
-              <dl className="px-4 py-4 text-[13px]" style={{ borderBottom: "2px solid " + ink, fontVariantNumeric: "tabular-nums" }}>
+              <dl
+                className="px-4 py-4 text-[13px]"
+                style={{ borderBottom: "2px solid " + ink, fontVariantNumeric: "tabular-nums" }}
+              >
                 <div className="flex justify-between py-1">
                   <dt style={{ color: neutral }}>Subtotal</dt>
                   <dd>{priceOf(selected.subtotal_cents)}</dd>
@@ -908,9 +1141,14 @@ export default function Screen() {
                   <dt style={{ color: neutral }}>VAT at {TAX_RATE_PERCENT}%</dt>
                   <dd>{priceOf(selected.tax_cents)}</dd>
                 </div>
-                <div className="mt-2 flex items-end justify-between pt-2" style={{ borderTop: "2px solid " + ink }}>
+                <div
+                  className="mt-2 flex items-end justify-between pt-2"
+                  style={{ borderTop: "2px solid " + ink }}
+                >
                   <dt className={labelCls}>Total {selected.currency}</dt>
-                  <dd className="text-[22px] font-bold leading-none tracking-[-0.02em]">{priceOf(selected.total_cents)}</dd>
+                  <dd className="text-[22px] font-bold leading-none tracking-[-0.02em]">
+                    {priceOf(selected.total_cents)}
+                  </dd>
                 </div>
               </dl>
 
@@ -921,12 +1159,18 @@ export default function Screen() {
                       type="button"
                       onClick={() => setConfirming(true)}
                       className="w-full rounded-none border-2 px-4 py-3 text-[13px] font-bold uppercase tracking-[0.14em]"
-                      style={{ borderColor: ink, backgroundColor: ink, color: surface, minHeight: 44 }}
+                      style={{
+                        borderColor: ink,
+                        backgroundColor: ink,
+                        color: surface,
+                        minHeight: 44,
+                      }}
                     >
                       Mark as shipped
                     </Button>
                     <p className="mt-2 text-[12px] leading-[1.5]" style={{ color: neutral }}>
-                      Records dispatch against {selected.order_reference}. No carrier label or tracking is created.
+                      Records dispatch against {selected.order_reference}. No carrier label or
+                      tracking is created.
                     </p>
                   </>
                 )}
@@ -934,18 +1178,24 @@ export default function Screen() {
                 {selected.status === "placed" && confirming && !shipBusy && (
                   <div className="ao-row">
                     <p className="text-[13px] font-bold">
-                      Dispatch {selected.items.reduce((s, it) => s + it.quantity, 0)} items to {selected.shipping_name}?
+                      Dispatch {selected.items.reduce((s, it) => s + it.quantity, 0)} items to{" "}
+                      {selected.shipping_name}?
                     </p>
                     <p className="mt-1 text-[12px] leading-[1.5]" style={{ color: neutral }}>
-                      The status changes to Shipped straight away and, if the order sits under an account, the shopper sees it in
-                      their order history.
+                      The status changes to Shipped straight away and, if the order sits under an
+                      account, the shopper sees it in their order history.
                     </p>
                     <div className="mt-3 flex gap-2">
                       <Button
                         type="button"
                         onClick={confirmShip}
                         className="flex-1 rounded-none border-2 px-3 py-3 text-[12px] font-bold uppercase tracking-[0.12em]"
-                        style={{ borderColor: ink, backgroundColor: ink, color: surface, minHeight: 44 }}
+                        style={{
+                          borderColor: ink,
+                          backgroundColor: ink,
+                          color: surface,
+                          minHeight: 44,
+                        }}
                       >
                         Confirm dispatch
                       </Button>
@@ -953,7 +1203,12 @@ export default function Screen() {
                         type="button"
                         onClick={() => setConfirming(false)}
                         className="rounded-none border-2 px-3 py-3 text-[12px] font-bold uppercase tracking-[0.12em]"
-                        style={{ borderColor: ink, backgroundColor: "transparent", color: ink, minHeight: 44 }}
+                        style={{
+                          borderColor: ink,
+                          backgroundColor: "transparent",
+                          color: ink,
+                          minHeight: 44,
+                        }}
                       >
                         Keep waiting
                       </Button>
@@ -967,11 +1222,19 @@ export default function Screen() {
                       type="button"
                       disabled
                       className="w-full rounded-none border-2 px-4 py-3 text-[13px] font-bold uppercase tracking-[0.14em] opacity-70"
-                      style={{ borderColor: ink, backgroundColor: ink, color: surface, minHeight: 44 }}
+                      style={{
+                        borderColor: ink,
+                        backgroundColor: ink,
+                        color: surface,
+                        minHeight: 44,
+                      }}
                     >
                       Recording dispatch…
                     </Button>
-                    <div className="mt-2 h-[2px] w-full overflow-hidden" style={{ backgroundColor: hair }}>
+                    <div
+                      className="mt-2 h-[2px] w-full overflow-hidden"
+                      style={{ backgroundColor: hair }}
+                    >
                       <div className="ao-bar h-full w-1/3" />
                     </div>
                   </div>
@@ -984,12 +1247,16 @@ export default function Screen() {
                       style={{ borderColor: ink }}
                     >
                       <span className={labelCls}>Dispatched</span>
-                      <span className="text-[13px] font-bold" style={{ fontVariantNumeric: "tabular-nums" }}>
+                      <span
+                        className="text-[13px] font-bold"
+                        style={{ fontVariantNumeric: "tabular-nums" }}
+                      >
                         {selected.shipped_at}
                       </span>
                     </div>
                     <p className="mt-2 text-[12px] leading-[1.5]" style={{ color: neutral }}>
-                      Nothing left to do on this one. The shopper can see the status if the order is under an account.
+                      Nothing left to do on this one. The shopper can see the status if the order is
+                      under an account.
                     </p>
                   </div>
                 )}
@@ -1001,15 +1268,25 @@ export default function Screen() {
                       disabled
                       aria-describedby="ship-blocked"
                       className="w-full cursor-not-allowed rounded-none border-2 px-4 py-3 text-[13px] font-bold uppercase tracking-[0.14em] opacity-50"
-                      style={{ borderColor: neutral, backgroundColor: "transparent", color: neutral, minHeight: 44 }}
+                      style={{
+                        borderColor: neutral,
+                        backgroundColor: "transparent",
+                        color: neutral,
+                        minHeight: 44,
+                      }}
                     >
                       Mark as shipped
                     </Button>
-                    <p id="ship-blocked" className="mt-2 flex gap-2 text-[12px] leading-[1.5]" style={{ color: accent }}>
+                    <p
+                      id="ship-blocked"
+                      className="mt-2 flex gap-2 text-[12px] leading-[1.5]"
+                      style={{ color: accent }}
+                    >
                       <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
                       <span>
-                        Stripe hasn’t confirmed this payment yet. Dispatch unlocks when the webhook marks{" "}
-                        {selected.stripe_payment_intent} as succeeded — don’t send the goods before then.
+                        Stripe hasn’t confirmed this payment yet. Dispatch unlocks when the webhook
+                        marks {selected.stripe_payment_intent} as succeeded — don’t send the goods
+                        before then.
                       </span>
                     </p>
                   </div>
@@ -1022,11 +1299,20 @@ export default function Screen() {
                       disabled
                       aria-describedby="ship-cancelled"
                       className="w-full cursor-not-allowed rounded-none border-2 px-4 py-3 text-[13px] font-bold uppercase tracking-[0.14em] opacity-50"
-                      style={{ borderColor: neutral, backgroundColor: "transparent", color: neutral, minHeight: 44 }}
+                      style={{
+                        borderColor: neutral,
+                        backgroundColor: "transparent",
+                        color: neutral,
+                        minHeight: 44,
+                      }}
                     >
                       Mark as shipped
                     </Button>
-                    <p id="ship-cancelled" className="mt-2 text-[12px] leading-[1.5]" style={{ color: neutral }}>
+                    <p
+                      id="ship-cancelled"
+                      className="mt-2 text-[12px] leading-[1.5]"
+                      style={{ color: neutral }}
+                    >
                       {selected.cancelled_note}
                     </p>
                   </div>
@@ -1039,7 +1325,8 @@ export default function Screen() {
 
       <div className="mt-6" style={{ borderTop: "1px solid " + hair }}>
         <p className="pt-3 text-[12px]" style={{ color: neutral }}>
-          Fulfilment is manual: statuses recorded here are the only record of dispatch. Shipping rates and the VAT rate are set in{" "}
+          Fulfilment is manual: statuses recorded here are the only record of dispatch. Shipping
+          rates and the VAT rate are set in{" "}
           <button
             type="button"
             onClick={() => navigate("admin-products")}
