@@ -56,8 +56,8 @@ export default function ConsentBanner() {
             Cookies on this site
           </p>
           <p id="consent-body" className="mt-1 text-sm text-slate-600">
-            We use essential cookies to run the shop. With your consent we'd also use
-            non-essential cookies to understand how the shop is used. See our{" "}
+            We use essential cookies to run the shop. With your consent we'd also use non-essential
+            cookies to understand how the shop is used. See our{" "}
             <button
               type="button"
               onClick={() => navigate("privacy")}
@@ -69,12 +69,7 @@ export default function ConsentBanner() {
           </p>
         </div>
         <div className="flex shrink-0 gap-2">
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            onClick={() => choose("declined")}
-          >
+          <Button type="button" variant="secondary" size="sm" onClick={() => choose("declined")}>
             Decline
           </Button>
           <Button type="button" size="sm" onClick={() => choose("accepted")}>
