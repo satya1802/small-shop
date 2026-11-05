@@ -49,11 +49,51 @@ const CURRENCY_OPTIONS = [
 ];
 
 function symbolFor(currency) {
-  return currency === "GBP" ? "£" : currency === "USD" ? "$" : currency === "EUR" ? "€" : `${currency} `;
+  return currency === "GBP"
+    ? "£"
+    : currency === "USD"
+      ? "$"
+      : currency === "EUR"
+        ? "€"
+        : `${currency} `;
 }
 
 function money(cents, currency) {
   return symbolFor(currency) + (Number(cents || 0) / 100).toFixed(2);
+}
+
+// Loading and error states look identical across the three tabs; this keeps
+// that markup in one place instead of three near-duplicate copies.
+function StatusBlock({ status, error, onRetry, loadingLabel, neutral, accent, ghostBtn, radius }) {
+  if (status === "loading") {
+    return (
+      <p role="status" className="py-8 text-center text-[13px]" style={{ color: neutral }}>
+        {loadingLabel}
+      </p>
+    );
+  }
+  if (status === "error") {
+    return (
+      <div
+        role="alert"
+        className="border-2 p-4 text-center"
+        style={{ borderColor: accent, borderRadius: radius }}
+      >
+        <p className="text-[13px]" style={{ color: accent }}>
+          {error}
+        </p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="mt-3 h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
+          style={ghostBtn}
+        >
+          Retry
+        </button>
+      </div>
+    );
+  }
+  return null;
 }
 
 export default function Screen() {
@@ -388,7 +428,11 @@ export default function Screen() {
       }));
       flash("success", "Tax rate saved.");
     } catch (err) {
-      setTaxForm((f) => ({ ...f, saving: false, error: err?.message || "Could not save the tax rate." }));
+      setTaxForm((f) => ({
+        ...f,
+        saving: false,
+        error: err?.message || "Could not save the tax rate.",
+      }));
     }
   }
 
@@ -399,9 +443,24 @@ export default function Screen() {
     "text-left py-2 px-3 text-[11px] font-bold uppercase tracking-[0.14em] whitespace-nowrap";
   const tdCls = "py-2.5 px-3 text-[13px] align-middle";
 
-  const primaryBtn = { backgroundColor: ink, color: paper, borderRadius: radius, border: `2px solid ${ink}` };
-  const ghostBtn = { backgroundColor: "transparent", color: ink, borderRadius: radius, border: `2px solid ${ink}` };
-  const quietBtn = { backgroundColor: "transparent", color: neutral, borderRadius: radius, border: `2px solid transparent` };
+  const primaryBtn = {
+    backgroundColor: ink,
+    color: paper,
+    borderRadius: radius,
+    border: `2px solid ${ink}`,
+  };
+  const ghostBtn = {
+    backgroundColor: "transparent",
+    color: ink,
+    borderRadius: radius,
+    border: `2px solid ${ink}`,
+  };
+  const quietBtn = {
+    backgroundColor: "transparent",
+    color: neutral,
+    borderRadius: radius,
+    border: `2px solid transparent`,
+  };
 
   const tabs = [
     { key: "products", label: `Catalogue (${products.length})` },
@@ -461,9 +520,17 @@ export default function Screen() {
             style={{ borderColor: banner.kind === "error" ? accent : ink, borderRadius: radius }}
           >
             {banner.kind === "error" ? (
-              <AlertCircle className="mt-[2px] h-4 w-4 shrink-0" aria-hidden="true" style={{ color: accent }} />
+              <AlertCircle
+                className="mt-[2px] h-4 w-4 shrink-0"
+                aria-hidden="true"
+                style={{ color: accent }}
+              />
             ) : (
-              <CheckCircle className="mt-[2px] h-4 w-4 shrink-0" aria-hidden="true" style={{ color: ink }} />
+              <CheckCircle
+                className="mt-[2px] h-4 w-4 shrink-0"
+                aria-hidden="true"
+                style={{ color: ink }}
+              />
             )}
             <p className="text-[13px] leading-[1.5]">{banner.text}</p>
             <button
@@ -483,16 +550,31 @@ export default function Screen() {
 
         {tab === "products" ? (
           <section aria-label="Catalogue" className="mt-5">
-            <section aria-label="Catalogue summary" className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-3">
+            <section
+              aria-label="Catalogue summary"
+              className="mb-5 grid grid-cols-2 gap-3 lg:grid-cols-3"
+            >
               {[
-                { l: "Live products", v: String(liveCount), h: `of ${products.length} in the catalogue` },
+                {
+                  l: "Live products",
+                  v: String(liveCount),
+                  h: `of ${products.length} in the catalogue`,
+                },
                 { l: "Draft products", v: String(draftCount), h: "not shown to shoppers" },
-                { l: "Active shipping options", v: String(activeShipping), h: "available at checkout" },
+                {
+                  l: "Active shipping options",
+                  v: String(activeShipping),
+                  h: "available at checkout",
+                },
               ].map((s) => (
                 <div
                   key={s.l}
                   className="border-2 px-3 py-2.5"
-                  style={{ borderColor: ink, borderRadius: radius, fontVariantNumeric: "tabular-nums" }}
+                  style={{
+                    borderColor: ink,
+                    borderRadius: radius,
+                    fontVariantNumeric: "tabular-nums",
+                  }}
                 >
                   <Stat label={s.l} value={s.v} hint={s.h} />
                 </div>
@@ -623,30 +705,28 @@ export default function Screen() {
               </form>
             ) : null}
 
-            {productsStatus === "loading" ? (
-              <p role="status" className="py-8 text-center text-[13px]" style={{ color: neutral }}>
-                Loading products…
-              </p>
-            ) : productsStatus === "error" ? (
-              <div role="alert" className="border-2 p-4 text-center" style={{ borderColor: accent, borderRadius: radius }}>
-                <p className="text-[13px]" style={{ color: accent }}>
-                  {productsError}
-                </p>
-                <button
-                  type="button"
-                  onClick={loadProducts}
-                  className="mt-3 h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
-                  style={ghostBtn}
-                >
-                  Retry
-                </button>
-              </div>
+            {productsStatus === "loading" || productsStatus === "error" ? (
+              <StatusBlock
+                status={productsStatus}
+                error={productsError}
+                onRetry={loadProducts}
+                loadingLabel="Loading products…"
+                neutral={neutral}
+                accent={accent}
+                ghostBtn={ghostBtn}
+                radius={radius}
+              />
             ) : products.length === 0 ? (
               <Empty
                 title="No products yet"
                 description="Add your first product to start building the catalogue."
                 action={
-                  <Button type="button" onClick={openNew} style={primaryBtn} className="h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]">
+                  <Button
+                    type="button"
+                    onClick={openNew}
+                    style={primaryBtn}
+                    className="h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
+                  >
                     New product
                   </Button>
                 }
@@ -655,11 +735,21 @@ export default function Screen() {
               <Table>
                 <THead>
                   <TR>
-                    <TH className={thCls} style={{ color: neutral }}>Product</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Price</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Stock</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Status</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Actions</TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Product
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Price
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Stock
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Status
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Actions
+                    </TH>
                   </TR>
                 </THead>
                 <TBody>
@@ -667,7 +757,9 @@ export default function Screen() {
                     <TR key={p.id}>
                       <TD className={tdCls}>
                         <p className="font-semibold">{p.name}</p>
-                        <p className="text-[12px]" style={{ color: neutral }}>{p.id}</p>
+                        <p className="text-[12px]" style={{ color: neutral }}>
+                          {p.id}
+                        </p>
                       </TD>
                       <TD className={tdCls}>{money(p.price_cents, currency)}</TD>
                       <TD className={tdCls}>{p.stock_quantity}</TD>
@@ -763,7 +855,13 @@ export default function Screen() {
                     className={fieldCls}
                     style={fieldStyle}
                     value={shipForm.name}
-                    onChange={(e) => setShipForm((f) => ({ ...f, name: e.target.value, errors: { ...f.errors, name: undefined } }))}
+                    onChange={(e) =>
+                      setShipForm((f) => ({
+                        ...f,
+                        name: e.target.value,
+                        errors: { ...f.errors, name: undefined },
+                      }))
+                    }
                     aria-invalid={!!shipForm.errors.name}
                   />
                   {shipForm.errors.name ? (
@@ -781,7 +879,13 @@ export default function Screen() {
                     className={fieldCls}
                     style={fieldStyle}
                     value={shipForm.cost}
-                    onChange={(e) => setShipForm((f) => ({ ...f, cost: e.target.value, errors: { ...f.errors, cost: undefined } }))}
+                    onChange={(e) =>
+                      setShipForm((f) => ({
+                        ...f,
+                        cost: e.target.value,
+                        errors: { ...f.errors, cost: undefined },
+                      }))
+                    }
                     aria-invalid={!!shipForm.errors.cost}
                   />
                   {shipForm.errors.cost ? (
@@ -798,7 +902,11 @@ export default function Screen() {
                   style={primaryBtn}
                   className="h-10 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
                 >
-                  {shipForm.saving ? "Saving…" : shipForm.mode === "new" ? "Add option" : "Save option"}
+                  {shipForm.saving
+                    ? "Saving…"
+                    : shipForm.mode === "new"
+                      ? "Add option"
+                      : "Save option"}
                 </Button>
                 {shipForm.mode === "edit" ? (
                   <button
@@ -813,24 +921,17 @@ export default function Screen() {
               </div>
             </form>
 
-            {shippingStatus === "loading" ? (
-              <p role="status" className="py-8 text-center text-[13px]" style={{ color: neutral }}>
-                Loading shipping options…
-              </p>
-            ) : shippingStatus === "error" ? (
-              <div role="alert" className="border-2 p-4 text-center" style={{ borderColor: accent, borderRadius: radius }}>
-                <p className="text-[13px]" style={{ color: accent }}>
-                  {shippingError}
-                </p>
-                <button
-                  type="button"
-                  onClick={loadShipping}
-                  className="mt-3 h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
-                  style={ghostBtn}
-                >
-                  Retry
-                </button>
-              </div>
+            {shippingStatus === "loading" || shippingStatus === "error" ? (
+              <StatusBlock
+                status={shippingStatus}
+                error={shippingError}
+                onRetry={loadShipping}
+                loadingLabel="Loading shipping options…"
+                neutral={neutral}
+                accent={accent}
+                ghostBtn={ghostBtn}
+                radius={radius}
+              />
             ) : shipping.length === 0 ? (
               <Empty
                 title="No shipping options yet"
@@ -840,10 +941,18 @@ export default function Screen() {
               <Table>
                 <THead>
                   <TR>
-                    <TH className={thCls} style={{ color: neutral }}>Option</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Cost</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Status</TH>
-                    <TH className={thCls} style={{ color: neutral }}>Actions</TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Option
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Cost
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Status
+                    </TH>
+                    <TH className={thCls} style={{ color: neutral }}>
+                      Actions
+                    </TH>
                   </TR>
                 </THead>
                 <TBody>
@@ -918,26 +1027,24 @@ export default function Screen() {
 
         {tab === "tax" ? (
           <section aria-label="Tax and VAT" className="mt-5 max-w-[480px]">
-            {taxStatus === "loading" ? (
-              <p role="status" className="py-8 text-center text-[13px]" style={{ color: neutral }}>
-                Loading the tax rate…
-              </p>
-            ) : taxStatus === "error" ? (
-              <div role="alert" className="border-2 p-4 text-center" style={{ borderColor: accent, borderRadius: radius }}>
-                <p className="text-[13px]" style={{ color: accent }}>
-                  {taxError}
-                </p>
-                <button
-                  type="button"
-                  onClick={loadTax}
-                  className="mt-3 h-9 px-4 text-[12px] font-bold uppercase tracking-[0.12em]"
-                  style={ghostBtn}
-                >
-                  Retry
-                </button>
-              </div>
+            {taxStatus === "loading" || taxStatus === "error" ? (
+              <StatusBlock
+                status={taxStatus}
+                error={taxError}
+                onRetry={loadTax}
+                loadingLabel="Loading the tax rate…"
+                neutral={neutral}
+                accent={accent}
+                ghostBtn={ghostBtn}
+                radius={radius}
+              />
             ) : (
-              <form onSubmit={submitTax} aria-label="Tax settings" className="border-2 p-4" style={{ borderColor: ink, borderRadius: radius }}>
+              <form
+                onSubmit={submitTax}
+                aria-label="Tax settings"
+                className="border-2 p-4"
+                style={{ borderColor: ink, borderRadius: radius }}
+              >
                 <h2 className="text-[15px] font-bold" style={{ fontFamily: brand.fontHeading }}>
                   Tax &amp; VAT
                 </h2>
@@ -954,7 +1061,9 @@ export default function Screen() {
                       className={fieldCls}
                       style={fieldStyle}
                       value={taxForm.rate}
-                      onChange={(e) => setTaxForm((f) => ({ ...f, rate: e.target.value, error: "" }))}
+                      onChange={(e) =>
+                        setTaxForm((f) => ({ ...f, rate: e.target.value, error: "" }))
+                      }
                       aria-invalid={!!taxForm.error}
                     />
                   </div>
