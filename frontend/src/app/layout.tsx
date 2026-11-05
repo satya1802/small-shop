@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 
 import "@/index.css";
 
+import ConsentBanner from "@/components/ConsentBanner";
+
 const LINKS = [
   { href: "/catalogue", label: "Shop catalogue" },
   { href: "/product-detail", label: "Product detail" },
@@ -13,6 +15,7 @@ const LINKS = [
   { href: "/account", label: "My account" },
   { href: "/admin-orders", label: "Admin orders" },
   { href: "/admin-products", label: "Products & store settings" },
+  { href: "/privacy", label: "Privacy notice" },
 ];
 
 const linkClass = (isActive: boolean) =>
@@ -61,6 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </aside>
           <main className="flex-1 overflow-auto">{children}</main>
         </div>
+        <ConsentBanner />
       </body>
     </html>
   );
